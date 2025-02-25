@@ -1,6 +1,308 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-  "current": "Default",
+  "current": {
+    "sections": {
+      "top-banner": {
+        "type": "top-banner",
+        "settings": {
+          "text": "Fall Into Something Delicious: Up To 30% Off Selected Gifts! *",
+          "span_text": "no code needed",
+          "bg_color": "#C4122E",
+          "heading_color": "#FFFFFF",
+          "span_color": "#FFD700",
+          "button_text": "Shop Sale",
+          "button_link": "",
+          "button_bg_color": "#FFFFFF",
+          "button_text_color": "#C4122E"
+        }
+      },
+      "header": {
+        "type": "header",
+        "blocks": {
+          "header_img_NkLB4E": {
+            "type": "header_img",
+            "settings": {
+              "image": "shopify://shop_images/shop-logo.png"
+            }
+          },
+          "menu_link_P7eVLz": {
+            "type": "menu_link",
+            "settings": {
+              "link_text": "Fall Treats",
+              "link_url": "shopify://collections",
+              "show_mega_menu": true,
+              "menu1": "",
+              "menu2": "",
+              "menu3": "",
+              "image1_name": "",
+              "image2_name": ""
+            }
+          },
+          "menu_link_ATnxpY": {
+            "type": "menu_link",
+            "settings": {
+              "link_text": "BestSellers",
+              "link_url": "shopify://collections",
+              "show_mega_menu": true,
+              "menu1": "gift-treats",
+              "menu2": "gift-types",
+              "menu3": "gifts-by-price",
+              "image1": "shopify://shop_images/Bestseller.png",
+              "image1_name": "",
+              "image2": "shopify://shop_images/cookies.png",
+              "image2_name": ""
+            }
+          },
+          "menu_link_jCjMDw": {
+            "type": "menu_link",
+            "settings": {
+              "link_text": "New Menu Item",
+              "link_url": "",
+              "show_mega_menu": true,
+              "menu1": "",
+              "menu2": "",
+              "menu3": "",
+              "image1_name": "",
+              "image2_name": ""
+            }
+          },
+          "menu_link_V8Jkp4": {
+            "type": "menu_link",
+            "settings": {
+              "link_text": "New Menu Item",
+              "link_url": "",
+              "show_mega_menu": true,
+              "menu1": "",
+              "menu2": "",
+              "menu3": "",
+              "image1_name": "",
+              "image2_name": ""
+            }
+          },
+          "menu_link_8CKcdi": {
+            "type": "menu_link",
+            "settings": {
+              "link_text": "New Menu Item",
+              "link_url": "",
+              "show_mega_menu": true,
+              "menu1": "",
+              "menu2": "",
+              "menu3": "",
+              "image1_name": "",
+              "image2_name": ""
+            }
+          },
+          "menu_link_zixQNk": {
+            "type": "menu_link",
+            "settings": {
+              "link_text": "New Menu Item",
+              "link_url": "",
+              "show_mega_menu": true,
+              "menu1": "",
+              "menu2": "",
+              "menu3": "",
+              "image1_name": "",
+              "image2_name": ""
+            }
+          },
+          "menu_link_bPQnKw": {
+            "type": "menu_link",
+            "settings": {
+              "link_text": "New Menu Item",
+              "link_url": "",
+              "show_mega_menu": true,
+              "menu1": "",
+              "menu2": "",
+              "menu3": "",
+              "image1_name": "",
+              "image2_name": ""
+            }
+          }
+        },
+        "block_order": [
+          "header_img_NkLB4E",
+          "menu_link_P7eVLz",
+          "menu_link_ATnxpY",
+          "menu_link_jCjMDw",
+          "menu_link_V8Jkp4",
+          "menu_link_8CKcdi",
+          "menu_link_zixQNk",
+          "menu_link_bPQnKw"
+        ],
+        "settings": {
+          "bg_color": "#ffffff",
+          "menu_color": "#000000",
+          "utilities_color": "#000000"
+        }
+      },
+      "hero": {
+        "type": "hero",
+        "settings": {
+          "text_color": "#000000",
+          "button_bg_color": "#C4122E",
+          "button_text_color": "#FFFFFF",
+          "container_alignment": "center",
+          "text_alignment": "center",
+          "mobile_text_alignment": "center",
+          "show_heading_mobile": true,
+          "show_subheading_mobile": true,
+          "show_small_text_mobile": true
+        }
+      },
+      "img-with-text-button": {
+        "type": "img-with-text-button",
+        "settings": {
+          "title": "Image with text",
+          "text": "<p>Write your description</p>",
+          "hide_description_mobile": false,
+          "alignment": "center",
+          "button_text": "Click Me",
+          "button_url": "/",
+          "background_color": "#ffffff",
+          "text_color": "#000000",
+          "description_color": "#666666",
+          "button_text_color": "#ffffff",
+          "button_background_color": "#000000",
+          "hover_background_color": "#f0f0f0",
+          "hover_text_color": "#333333",
+          "hover_description_color": "#555555",
+          "hover_button_text_color": "#ffffff",
+          "hover_button_background_color": "#333333",
+          "mobile_button_bg_color": "#ffffff",
+          "mobile_button_text_color": "#ffffff"
+        }
+      },
+      "img-with-text-button2": {
+        "type": "img-with-text-button2",
+        "settings": {
+          "title": "Image with text",
+          "text": "<p>Write your description</p>",
+          "button_text": "Click Me",
+          "button_url": "/",
+          "hide_description_mobile": false,
+          "background_color": "#ffffff",
+          "text_color": "#000000",
+          "description_color": "#666666",
+          "button_text_color": "#ffffff",
+          "button_background_color": "#000000",
+          "hover_background_color": "#f0f0f0",
+          "hover_text_color": "#333333",
+          "hover_description_color": "#555555",
+          "hover_button_text_color": "#ffffff",
+          "hover_button_background_color": "#333333",
+          "mobile_button_bg_color": "#ffffff",
+          "mobile_button_text_color": "#ffffff"
+        }
+      },
+      "promotional-banner-season": {
+        "type": "promotional-banner-season",
+        "settings": {
+          "title": "Image with text",
+          "text": "<p>Write your description</p>",
+          "hide_description_mobile": false,
+          "alignment": "center",
+          "button_text": "Click Me",
+          "button_url": "/",
+          "background_color": "#ffffff",
+          "text_color": "#000000",
+          "description_color": "#666666",
+          "button_text_color": "#ffffff",
+          "button_background_color": "#000000",
+          "hover_background_color": "#f0f0f0",
+          "hover_text_color": "#333333",
+          "hover_description_color": "#555555",
+          "hover_button_text_color": "#ffffff",
+          "hover_button_background_color": "#333333",
+          "mobile_button_bg_color": "#ffffff",
+          "mobile_button_text_color": "#ffffff"
+        }
+      },
+      "video-section": {
+        "type": "video-section",
+        "settings": {
+          "loop": false
+        }
+      },
+      "NewSelection": {
+        "type": "NewSelection",
+        "settings": {
+          "heading": "Cookies speak louder than words",
+          "trending_collection": "",
+          "bestselling_collection": "",
+          "new_items_collection": "",
+          "background_color": "#FFF3DC",
+          "text_color": "#232323",
+          "card_background_color": "#FFF3DC",
+          "option_background_color": "#FFF3DC",
+          "option-text-color": "#232323",
+          "option-clicking-text-color": "#FFFFFF",
+          "slider_button_background_color": "#C4122E",
+          "discount_background_color": "#C4122E",
+          "discount_text_color": "#FFF",
+          "slick_dots_bg": "#DDB468"
+        }
+      },
+      "featured-collection": {
+        "type": "featured-collection",
+        "settings": {
+          "heading": "Cookies speak louder than words",
+          "collection": "",
+          "filter_text": "Choose Your Gift",
+          "treat_tags": "Original Cookies,Brownie Bites,Nibblers",
+          "show_treat_filter": true,
+          "occasion_tags": "Birthday,Thank You,Signature,,Get Well,Sympathy",
+          "show_occasion_filter": true,
+          "budget_tags": "Under $30,$30 to $50,$50 to $75,$75 to $100,Over $100",
+          "show_budget_filter": true,
+          "background_color": "#FFF3DC",
+          "text_color": "#232323",
+          "filter_background_color": "#FFFFFF",
+          "filter_text_color": "#232323",
+          "card_background_color": "#FFF3DC",
+          "card_text_color": "#232323",
+          "discount_background_color": "#C4122E",
+          "discount_text_color": "#FFF",
+          "slider_button_background_color": "#C4122E",
+          "slick_dots_bg": "#000000"
+        }
+      },
+      "pickup-section": {
+        "type": "pickup-section",
+        "settings": {
+          "background_color": "#FFF9EB",
+          "text_color": "#232323",
+          "btn_background_color": "#C4122E",
+          "btn_text_color": "#FFF3DC",
+          "mobile_heading": false,
+          "mobile_subheading": false,
+          "text_alignment": "center",
+          "mobile_text_alignment": "left"
+        }
+      },
+      "footer-section": {
+        "type": "footer-section",
+        "settings": {
+          "bg_color": "#ffffff",
+          "text_color": "#000000",
+          "button_text_color": "#ffffff",
+          "button_bg_color": "#C4122E",
+          "sign_up_heading": "Join Our Newsletter",
+          "sign_up_text": "Subscribe to our newsletter and stay updated with the latest news and offers.",
+          "small_text": "Discount is not valid with in-store orders, other codes, or sale items"
+        }
+      }
+    },
+    "content_for_index": []
+  },
   "presets": {
-    "Default": { }
+    "Default": {}
   }
 }
