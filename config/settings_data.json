@@ -17,7 +17,7 @@
           "span_text": "no code needed",
           "bg_color": "#C4122E",
           "heading_color": "#FFFFFF",
-          "span_color": "#FFD700",
+          "span_color": "#FFFFFF",
           "button_text": "Shop Sale",
           "button_link": "",
           "button_bg_color": "#FFFFFF",
@@ -151,19 +151,19 @@
           "heading_6xGgQi": {
             "type": "heading",
             "settings": {
-              "heading": "Welcome to Our Store"
+              "heading": "Celebrate Fall With Delicious Savings"
             }
           },
           "subheading_Beycpt": {
             "type": "subheading",
             "settings": {
-              "subheading": "Discover the Best Deals"
+              "subheading": "Up to 30% Off Fall Cookie Gifts!"
             }
           },
           "text_a7JUxJ": {
             "type": "text",
             "settings": {
-              "text": "Browse our latest collection"
+              "text": "no code needed"
             }
           },
           "button_3Pw9bC": {
@@ -197,6 +197,7 @@
       "img-with-text-button": {
         "type": "img-with-text-button",
         "settings": {
+          "image": "shopify://shop_images/promoBanner.png",
           "title": "Image with text",
           "text": "<p>Write your description</p>",
           "hide_description_mobile": false,
@@ -220,6 +221,7 @@
       "img-with-text-button2": {
         "type": "img-with-text-button2",
         "settings": {
+          "image": "shopify://shop_images/promotionalBanner3.png",
           "title": "Image with text",
           "text": "<p>Write your description</p>",
           "button_text": "Click Me",
@@ -242,6 +244,7 @@
       "promotional-banner-season": {
         "type": "promotional-banner-season",
         "settings": {
+          "image": "shopify://shop_images/promo-banner-season.png",
           "title": "Image with text",
           "text": "<p>Write your description</p>",
           "hide_description_mobile": false,
@@ -265,6 +268,8 @@
       "video-section": {
         "type": "video-section",
         "settings": {
+          "video": "shopify://files/videos/video.mp4",
+          "mobile_video": "shopify://files/videos/mobileVideo.mp4",
           "loop": false
         }
       },
