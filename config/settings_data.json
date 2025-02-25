@@ -318,7 +318,35 @@
       },
       "pickup-section": {
         "type": "pickup-section",
+        "blocks": {
+          "pickup_heading_LYaBE7": {
+            "type": "pickup_heading",
+            "settings": {
+              "heading_text": "Buy Online. Pick Up In Store"
+            }
+          },
+          "pickup_subheading_G6J6hQ": {
+            "type": "pickup_subheading",
+            "settings": {
+              "subheading_text": "Mrs. Fields cookies can also be purchased online and picked up in a store near you."
+            }
+          },
+          "pickup_button_7Df9TJ": {
+            "type": "pickup_button",
+            "settings": {
+              "button_text": "Find A Store",
+              "button_link": ""
+            }
+          }
+        },
+        "block_order": [
+          "pickup_heading_LYaBE7",
+          "pickup_subheading_G6J6hQ",
+          "pickup_button_7Df9TJ"
+        ],
         "settings": {
+          "image": "shopify://shop_images/Mask_group.png",
+          "mobile_image": "shopify://shop_images/pickupmobile_dd515495-d2e1-4f1e-a90b-7e4d356e43e7.png",
           "background_color": "#fff9eb",
           "text_color": "#232323",
           "btn_background_color": "#c4122e",
@@ -331,7 +359,47 @@
       },
       "footer-section": {
         "type": "footer-section",
+        "blocks": {
+          "footer_menu_3EcVGk": {
+            "type": "footer_menu",
+            "settings": {
+              "menu_list": "gift-treats"
+            }
+          },
+          "footer_image_4FQfdp": {
+            "type": "footer_image",
+            "settings": {
+              "image": "shopify://shop_images/instaImg.png"
+            }
+          },
+          "footer_image_jyUDnV": {
+            "type": "footer_image",
+            "settings": {
+              "image": "shopify://shop_images/fbImg.png"
+            }
+          },
+          "footer_image_iMPkUQ": {
+            "type": "footer_image",
+            "settings": {
+              "image": "shopify://shop_images/twitterImg.png"
+            }
+          },
+          "footer_image_rcgH8R": {
+            "type": "footer_image",
+            "settings": {
+              "image": "shopify://shop_images/tiktokImg.png"
+            }
+          }
+        },
+        "block_order": [
+          "footer_menu_3EcVGk",
+          "footer_image_4FQfdp",
+          "footer_image_jyUDnV",
+          "footer_image_iMPkUQ",
+          "footer_image_rcgH8R"
+        ],
         "settings": {
+          "logo": "shopify://shop_images/shop-logo.png",
           "bg_color": "#ffffff",
           "text_color": "#000000",
           "button_text_color": "#ffffff",
