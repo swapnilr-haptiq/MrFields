@@ -366,6 +366,24 @@
               "menu_list": "gift-treats"
             }
           },
+          "footer_menu_LpCzk3": {
+            "type": "footer_menu",
+            "settings": {
+              "menu_list": "gift-types"
+            }
+          },
+          "footer_menu_EEYC4t": {
+            "type": "footer_menu",
+            "settings": {
+              "menu_list": "gift-treats"
+            }
+          },
+          "footer_menu_nwP4fz": {
+            "type": "footer_menu",
+            "settings": {
+              "menu_list": "gift-types"
+            }
+          },
           "footer_image_4FQfdp": {
             "type": "footer_image",
             "settings": {
@@ -393,6 +411,9 @@
         },
         "block_order": [
           "footer_menu_3EcVGk",
+          "footer_menu_LpCzk3",
+          "footer_menu_EEYC4t",
+          "footer_menu_nwP4fz",
           "footer_image_4FQfdp",
           "footer_image_jyUDnV",
           "footer_image_iMPkUQ",
