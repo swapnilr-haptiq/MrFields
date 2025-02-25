@@ -1,0 +1,6 @@
+node_modules
+src
+config.yml
+
+echo "config.yml" >> .gitignore
+
