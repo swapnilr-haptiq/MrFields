@@ -296,9 +296,9 @@
         "type": "featured-collection",
         "settings": {
           "heading": "Cookies speak louder than words",
-          "collection": "",
+          "collection": "featured-collections",
           "filter_text": "Choose Your Gift",
-          "treat_tags": "Original Cookies,Brownie Bites,Nibblers",
+          "treat_tags": "Original Cookies,Brownie Bites,Nibblers,swapnil",
           "show_treat_filter": true,
           "occasion_tags": "Birthday,Thank You,Signature,,Get Well,Sympathy",
           "show_occasion_filter": true,
@@ -313,7 +313,7 @@
           "discount_background_color": "#c4122e",
           "discount_text_color": "#ffffff",
           "slider_button_background_color": "#c4122e",
-          "slick_dots_bg": "#000000"
+          "slick_dots_bg": "#ddb468"
         }
       },
       "pickup-section": {
