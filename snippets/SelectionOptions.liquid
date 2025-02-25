@@ -1,0 +1,40 @@
+<div class="filters-section">
+  {% assign filters = "treat,occasion,budget" | split: "," %}
+  {% for filter in filters %}
+    {% assign filter_name = filter | capitalize %}
+    {% assign filter_id = "filter-" | append: filter %}
+    
+    {% capture filter_key %}{{ filter }}_tags{% endcapture %}
+    {% assign filter_tags = section.settings[filter_key] | split: "," %}
+
+    <div class="filter {{ filter }}" id="{{ filter_id }}-wrapper">
+      <p>{{ filter_name }}:</p>
+      <div class="filter-options">
+        {% for tag in filter_tags %}
+          {% if tag != "" %}
+            <button class="filter-option" data-filter="{{ filter }}" data-value="{{ tag | downcase }}">{{ tag }}</button>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<script>
+  document.querySelectorAll(".filter-option").forEach(option => {
+    option.addEventListener("click", function () {
+      let filterType = this.dataset.filter;
+      let filterValue = this.dataset.value;
+
+      document.querySelectorAll(`.filter-option[data-filter="${filterType}"]`).forEach(btn => btn.classList.remove("active"));
+      this.classList.add("active");
+
+      document.querySelectorAll(".product-item").forEach(item => {
+        let matchesFilter = item.dataset[filterType].includes(filterValue);
+        item.style.display = matchesFilter ? "block" : "none";
+      });
+
+      $(".slick-slider").slick("refresh");
+    });
+  });
+</script>

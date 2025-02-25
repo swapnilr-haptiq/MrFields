@@ -1,0 +1,388 @@
+{% comment %}
+  <div class="product-container collection-products {% if active %}active{% endif %}" id="{{ id }}">
+    {% comment %} <p class="total-items">{{ collection.products.size }} items</p> {% endcomment %}
+    <div class="product-list slick-slider">
+      {% for product in collection.products %}
+        <div class="product-item">
+          {% render 'SelectionProduct', product: product %}</div>
+      {% endfor %}
+    </div>
+  </div>
+
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const sectionID = '{{ section.id }}';
+      const tabs = document.querySelectorAll(`#section-${sectionID} .collection-tab`);
+      const collections = document.querySelectorAll(`#section-${sectionID} .collection-products`);
+      const leftBtn = document.querySelector(`#section-${sectionID} .leftBtn`);
+      const rightBtn = document.querySelector(`#section-${sectionID} .rightBtn`);
+
+      function loadCollection(container, handle) {
+        fetch(`/collections/${handle}/products.json`)
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.products.length > 0) {
+              let productHTML = `<p class="total-items">${data.products.length} items</p>`;
+              productHTML += `<div class="product-list slick-slider">`;
+
+              data.products.forEach((product) => {
+                productHTML += `
+                <div class="product-item">
+                  <a href="${product.url}">
+                    <img src="${product.images[0]}" alt="${product.title}">
+                    <p>${product.title}</p>
+                    <p>${product.variants[0].price} ${Shopify.currency.active}</p>
+                  </a>
+                </div>
+              `;
+              });
+
+              productHTML += `</div>`;
+              container.innerHTML = productHTML;
+
+              initializeSlick(container);
+            }
+          })
+          .catch((error) => console.error('Error loading collection:', error));
+      }
+
+      function initializeSlick(container) {
+        const slickSlider = container.querySelector('.slick-slider');
+        if (!slickSlider || $(slickSlider).hasClass('slick-initialized')) return;
+
+        $(slickSlider).slick({
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          infinite: false,
+          arrows: false,
+          dots: true,
+          responsive: [
+            { breakpoint: 1076, settings: { slidesToShow: 3, slidesToScroll: 3 } },
+            { breakpoint: 768, settings: { slidesToShow: 2, slidesToScroll: 2 } },
+            { breakpoint: 599, settings: { slidesToShow: 1, slidesToScroll: 1 } },
+          ],
+        });
+      }
+
+      function setActiveCollection(targetId, collectionHandle) {
+        tabs.forEach((t) => t.classList.remove('active'));
+        collections.forEach((c) => {
+          c.classList.remove('active');
+          c.style.display = 'none';
+        });
+
+        document.querySelector(`[data-target='${targetId}']`).classList.add('active');
+        let activeCollection = document.getElementById(targetId);
+        activeCollection.classList.add('active');
+        activeCollection.style.display = 'block';
+
+        if (activeCollection.innerHTML.trim() === '') {
+          loadCollection(activeCollection, collectionHandle);
+        } else {
+          initializeSlick(activeCollection);
+        }
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', function () {
+          const targetId = this.getAttribute('data-target');
+          const collectionHandle = this.getAttribute('data-handle');
+          setActiveCollection(targetId, collectionHandle);
+        });
+      });
+
+      setActiveCollection(`trending-${sectionID}`, '{{ section.settings.trending_collection }}');
+
+      if (leftBtn)
+        leftBtn.addEventListener('click', function () {
+          let activeSlider = document.querySelector(`#section-${sectionID} .collection-products.active .product-list`);
+          if (activeSlider && $(activeSlider).hasClass('slick-initialized')) {
+            $(activeSlider).slick('slickPrev');
+          }
+        });
+
+      if (rightBtn)
+        rightBtn.addEventListener('click', function () {
+          let activeSlider = document.querySelector(`#section-${sectionID} .collection-products.active .product-list`);
+          if (activeSlider && $(activeSlider).hasClass('slick-initialized')) {
+            $(activeSlider).slick('slickNext');
+          }
+        });
+    });
+  </script>
+{% endcomment %}
+
+{% comment %} final  {% endcomment %}
+{% comment %}
+  <div class="product-container collection-products {% if active %}active{% endif %}" id="{{ id }}">
+    {% comment %} <p class="total-items">{{ collection.products.size }} items</p> {% endcomment %}
+    <div class="product-list slick-slider-tab">
+      {% for product in collection.products %}
+        <div class="product-item">
+          {% render 'SelectionProduct', product: product %}</div>
+      {% endfor %}
+    </div>
+  </div>
+
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const sectionID = '{{ section.id }}';
+      const tabs = document.querySelectorAll(`#section-${sectionID} .collection-tab`);
+      const collections = document.querySelectorAll(`#section-${sectionID} .collection-products`);
+      const leftBtn = document.querySelector(`#section-${sectionID} .leftBtn`);
+      const rightBtn = document.querySelector(`#section-${sectionID} .rightBtn`);
+
+      function initializeSlick(container) {
+        const slickSlider = container.querySelector('.slick-slider-tab');
+        if (!slickSlider || $(slickSlider).hasClass('slick-initialized')) return;
+
+        $(slickSlider).slick({
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          infinite: false,
+          arrows: false,
+          dots: true,
+          responsive: [
+            { breakpoint: 1076, settings: { slidesToShow: 3, slidesToScroll: 3 } },
+            { breakpoint: 768, settings: { slidesToShow: 2, slidesToScroll: 2 } },
+            { breakpoint: 599, settings: { slidesToShow: 1, slidesToScroll: 1 } },
+          ],
+        });
+      }
+
+      function setActiveCollection(targetId) {
+        tabs.forEach((t) => t.classList.remove('active'));
+        collections.forEach((c) => {
+          c.classList.remove('active');
+          c.style.display = 'none';
+        });
+
+        document.querySelector(`[data-target='${targetId}']`).classList.add('active');
+        let activeCollection = document.getElementById(targetId);
+        activeCollection.classList.add('active');
+        activeCollection.style.display = 'block';
+        initializeSlick(activeCollection);
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', function () {
+          const targetId = this.getAttribute('data-target');
+          setActiveCollection(targetId);
+        });
+      });
+
+      setActiveCollection(`trending-${sectionID}`);
+
+      if (leftBtn)
+        leftBtn.addEventListener('click', function () {
+          let activeSlider = document.querySelector(`#section-${sectionID} .collection-products.active .product-list`);
+          if (activeSlider && $(activeSlider).hasClass('slick-initialized')) {
+            $(activeSlider).slick('slickPrev');
+          }
+        });
+
+      if (rightBtn)
+        rightBtn.addEventListener('click', function () {
+          let activeSlider = document.querySelector(`#section-${sectionID} .collection-products.active .product-list`);
+          if (activeSlider && $(activeSlider).hasClass('slick-initialized')) {
+            $(activeSlider).slick('slickNext');
+          }
+        });
+    });
+  </script>
+{% endcomment %}
+
+{% comment %} end final  {% endcomment %}
+{% comment %} 
+<div class="product-container collection-products {% if active %}active{% endif %}" id="{{ id }}">
+  {% comment %} <p class="total-items">{{ collection.products.size }} items</p> {% endcomment %}
+  <div class="product-list1 slick-slider-tab">
+    {% for product in collection.products %}
+      <div class="product-item1">
+        {% render 'SelectionProduct', product: product %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const sectionID = '{{ section.id }}';
+    const tabs = document.querySelectorAll(`#section-${sectionID} .collection-tab`);
+    const collections = document.querySelectorAll(`.collection-products`);
+    const btnLeft = document.querySelector(`#section-${sectionID} .btnLeft`);
+    const btnRight = document.querySelector(`#section-${sectionID} .btnRight`);
+
+function initializeSlick(container) {
+  const slickSlider = container.querySelector('.slick-slider-tab');
+  if (!slickSlider || $(slickSlider).hasClass('slick-initialized')) return;
+
+  $(slickSlider).slick({
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    infinite: false,
+    arrows: false,
+    dots: true,
+    responsive: [
+      { breakpoint: 1076, settings: { slidesToShow: 3, slidesToScroll: 3 } },
+      { breakpoint: 768, settings: { slidesToShow: 2, slidesToScroll: 2 } },
+      { breakpoint: 599, settings: { slidesToShow: 1, slidesToScroll: 1 } },
+    ],
+  });
+}
+
+
+ function setActiveCollection(targetId) {
+  tabs.forEach((t) => t.classList.remove('active'));
+  collections.forEach((c) => {
+    c.classList.remove('active');
+    c.style.display = 'none';
+  });
+
+  document.querySelector(`[data-target='${targetId}']`).classList.add('active');
+  let activeCollection = document.getElementById(targetId);
+  if (activeCollection) {
+    activeCollection.classList.add('active');
+    activeCollection.style.display = 'block';
+
+    // Reinitialize Slick for the new active collection
+    setTimeout(() => initializeSlick(activeCollection), 300);
+  }
+}
+
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', function () {
+        const targetId = this.getAttribute('data-target');
+        setActiveCollection(targetId);
+      });
+    });
+
+    setActiveCollection(`trending-${sectionID}`);
+
+ if (btnLeft)
+  btnLeft.addEventListener('click', function () {
+    let activeSlider = document.querySelector(
+      `#section-${sectionID} .collection-products.active .slick-slider-tab`
+    );
+    if (activeSlider && $(activeSlider).hasClass('slick-initialized')) {
+      $(activeSlider).slick('slickPrev');
+    }
+  });
+
+if (btnRight)
+  btnRight.addEventListener('click', function () {
+    let activeSlider = document.querySelector(
+      `#section-${sectionID} .collection-products.active .slick-slider-tab`
+    );
+    if (activeSlider && $(activeSlider).hasClass('slick-initialized')) {
+      $(activeSlider).slick('slickNext');
+    }
+  });
+
+  });
+</script> {% endcomment %}
+
+
+
+
+
+
+
+
+<div class="product-container collection-products {% if active %}active{% endif %}" id="{{ id }}">
+  {% comment %} <p class="total-items">{{ collection.products.size }} items</p> {% endcomment %}
+  <div class="product-list1 slick-slider-tab">
+    {% for product in collection.products %}
+      <div class="product-item1">
+        {% render 'SelectionProduct', product: product %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const sectionID = '{{ section.id }}';
+  const tabs = document.querySelectorAll(`#section-${sectionID} .collection-tab`);
+  const collections = document.querySelectorAll(`.collection-products`);
+  const btnLeft = document.querySelector(`#section-${sectionID} .btnLeft`);
+  const btnRight = document.querySelector(`#section-${sectionID} .btnRight`);
+
+  function initializeSlick(container) {
+    const slickSlider = container.querySelector('.slick-slider-tab');
+
+    if (!slickSlider) return;
+
+    if ($(slickSlider).hasClass('slick-initialized')) {
+      $(slickSlider).slick('unslick');
+    }
+
+
+    $(slickSlider).slick({
+      slidesToShow: 4,
+      slidesToScroll: 4,
+      infinite: false,
+      arrows: false,
+      dots: true, 
+      responsive: [
+        { breakpoint: 1076, settings: { slidesToShow: 3, slidesToScroll: 3 } },
+        { breakpoint: 768, settings: { slidesToShow: 2, slidesToScroll: 2} }, // Hide dots on mobile
+        { breakpoint: 599, settings: { slidesToShow: 1, slidesToScroll: 1, dots: false } }, // Hide dots on smaller screens
+      ],
+    });
+  }
+
+  function setActiveCollection(targetId) {
+    tabs.forEach((t) => t.classList.remove('active'));
+    collections.forEach((c) => {
+      c.classList.remove('active');
+      c.style.display = 'none';
+    });
+
+    document.querySelector(`[data-target='${targetId}']`).classList.add('active');
+    let activeCollection = document.getElementById(targetId);
+    if (activeCollection) {
+      activeCollection.classList.add('active');
+      activeCollection.style.display = 'block';
+
+   
+      setTimeout(() => initializeSlick(activeCollection), 300);
+    }
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', function () {
+      const targetId = this.getAttribute('data-target');
+      setActiveCollection(targetId);
+    });
+  });
+
+  setActiveCollection(`trending-${sectionID}`);
+
+  if (btnLeft)
+    btnLeft.addEventListener('click', function () {
+      let activeSlider = document.querySelector(
+        `#section-${sectionID} .collection-products.active .slick-slider-tab`
+      );
+      if (activeSlider && $(activeSlider).hasClass('slick-initialized')) {
+        $(activeSlider).slick('slickPrev');
+      }
+    });
+
+  if (btnRight)
+    btnRight.addEventListener('click', function () {
+      let activeSlider = document.querySelector(
+        `#section-${sectionID} .collection-products.active .slick-slider-tab`
+      );
+      if (activeSlider && $(activeSlider).hasClass('slick-initialized')) {
+        $(activeSlider).slick('slickNext');
+      }
+    });
+});
+
+</script>

@@ -1,0 +1,158 @@
+
+{% comment %} 
+
+<div class="product-card-wrapper" 
+     data-tags="{{ product.tags | join: ',' | downcase }}" 
+     data-budget="{{ product.tags | where: 'budget_' | join: ',' | downcase }}" 
+     data-treat="{{ product.tags | where: 'treat_' | join: ',' | downcase }}" 
+     data-occasion="{{ product.tags | where: 'occasion_' | join: ',' | downcase }}" 
+     data-price="{{ product.price | money_without_currency }}">
+
+  <div class="product-image">
+    <img src="{{ product.featured_image | img_url: '500x' }}" alt="{{ product.title }}" loading="lazy" width="" height="">
+  </div>
+
+  <div class="product-details">
+    {% if product.compare_at_price > product.price %}
+      {% assign discount_percentage = product.compare_at_price
+        | minus: product.price
+        | times: 100
+        | divided_by: product.compare_at_price
+        | round
+      %}
+      <div class="discount">
+  <span class="discount-value">{{ discount_percentage }}%</span>
+  <span class="discount-text">Off</span>
+</div>
+
+    {% endif %}
+    <img src="{{ 'rating.png' | asset_url }}" alt="Stars Image" width="100%" height="auto">
+    <h3>{{ product.title }}</h3>
+    <div class="product-price-wrapper">
+      {% if product.compare_at_price %}
+        <p class="compare-at-price">
+          <s>${{ product.compare_at_price | money_without_currency }}</s>
+        </p>
+      {% endif %}
+      <p class="price">${{ product.price | money_without_currency }}</p>
+    </div>
+  </div>
+</div> {% endcomment %}
+
+
+
+
+
+
+
+
+{% comment %} 
+<div class="product-card-wrapper" 
+     data-tags="{{ product.tags | join: ',' | downcase }}" 
+     data-budget="{{ product.tags | where: 'budget_' | join: ',' | downcase }}" 
+     data-treat="{{ product.tags | where: 'treat_' | join: ',' | downcase }}" 
+     data-occasion="{{ product.tags | where: 'occasion_' | join: ',' | downcase }}" 
+     data-price="{{ product.price | money_without_currency }}">
+
+  <div class="product-image">
+    <img src="{{ product.featured_image | img_url: '500x' }}" alt="{{ product.title }}" loading="lazy" width="" height="">
+  </div>
+
+  <div class="product-details">
+    {% if product.compare_at_price > product.price %}
+      {% assign discount_percentage = product.compare_at_price
+        | minus: product.price
+        | times: 100
+        | divided_by: product.compare_at_price
+        | round
+      %}
+      <div class="discount">
+  <span class="discount-value">{{ discount_percentage }}%</span>
+  <span class="discount-text">Off</span>
+</div>
+
+    {% endif %}
+    <img src="{{ 'rating.png' | asset_url }}" alt="Stars Image" width="100%" height="auto">
+    <h3>{{ product.title }}</h3>
+    <div class="product-price-wrapper">
+      {% if product.compare_at_price %}
+        <p class="compare-at-price">
+          <s>${{ product.compare_at_price | money_without_currency }}</s>
+        </p>
+      {% endif %}
+      <p class="price">${{ product.price | money_without_currency }}</p>
+    </div>
+  </div>
+</div>  {% endcomment %}
+
+{% comment %} 
+
+<div class="product-item" 
+     data-tags="{{ product.tags | join: ',' | downcase }}">
+  <div class="product-image">
+    <img src="{{ product.featured_image | img_url: '500x' }}" alt="{{ product.title }}" loading="lazy">
+  </div>
+  <div class="product-details">
+    {% if product.compare_at_price > product.price %}
+      {% assign discount_percentage = product.compare_at_price
+        | minus: product.price
+        | times: 100
+        | divided_by: product.compare_at_price
+        | round
+      %}
+      <div class="discount">
+        <span class="discount-value">{{ discount_percentage }}%</span>
+        <span class="discount-text">Off</span>
+      </div>
+    {% endif %}
+    <img src="{{ 'rating.png' | asset_url }}" alt="Stars Image">
+    <h3>{{ product.title }}</h3>
+    <div class="product-price-wrapper">
+      {% if product.compare_at_price %}
+        <p class="compare-at-price">
+          <s>${{ product.compare_at_price | money_without_currency }}</s>
+        </p>
+      {% endif %}
+      <p class="price">${{ product.price | money_without_currency }}</p>
+    </div>
+  </div>
+</div> {% endcomment %}
+
+
+
+
+<div class="product-card-wrapper" 
+     data-tags="{{ product.tags | join: ',' | downcase }}"
+     data-price="{{ product.price | money_without_currency }}">
+
+  <div class="product-image">
+    <img src="{{ product.featured_image | img_url: '500x' }}" alt="{{ product.title }}" loading="lazy">
+  </div>
+
+  <div class="product-details">
+    {% if product.compare_at_price > product.price %}
+      {% assign discount_percentage = product.compare_at_price
+        | minus: product.price
+        | times: 100
+        | divided_by: product.compare_at_price
+        | round
+      %}
+      <div class="discount">
+        <span class="discount-value">{{ discount_percentage }}%</span>
+        <span class="discount-text">Off</span>
+      </div>
+    {% endif %}
+    
+    <img src="{{ 'rating.png' | asset_url }}" alt="Stars Image">
+    <h3>{{ product.title }}</h3>
+    
+    <div class="product-price-wrapper">
+      {% if product.compare_at_price %}
+        <p class="compare-at-price">
+          <s>${{ product.compare_at_price | money_without_currency }}</s>
+        </p>
+      {% endif %}
+      <p class="price">${{ product.price | money_without_currency }}</p>
+    </div>
+  </div>
+</div> 

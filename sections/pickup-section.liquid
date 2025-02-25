@@ -1,0 +1,192 @@
+
+
+<section
+  id="section-{{ section.id }}"
+  class="pickup-banner-wrapper1"
+>
+  <div class="container">
+    <div class="banner-wrapper1">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'pickup_heading' %}
+            <h3 class="pickup-heading1
+                {% if  section.settings.mobile_heading  %} HideText {% endif %}">
+              {{ block.settings.heading_text }}
+            </h3>
+          {% when 'pickup_subheading' %}
+            <h2 class="pickup-subheading1 {% if  section.settings.mobile_subheading  %} HideText {% endif %} ">
+              {{ block.settings.subheading_text }}
+            </h2>
+          {% when 'pickup_button' %}
+            <a
+              href="{{ block.settings.button_link }}"
+              class="pickup-button1"
+            >
+              {{ block.settings.button_text }}
+            </a>
+          {% when 'paragraph' %}
+            <p>{{ block.settings.paragraph }}</p>
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pickup Banner Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Select Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Select Background Image for Mobile"
+    },
+    {
+        "type":"color",
+        "id":"background_color",
+        "label":"background color",
+        "default":"#FFF9EB"
+
+
+    },
+     {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#232323"
+    },
+    {
+      "type": "color",
+      "id": "btn_background_color",
+      "label": "Button Background Color",
+      "default": "#C4122E"
+    },
+    {
+      "type": "color",
+      "id": "btn_text_color",
+      "label": "Button Text Color",
+      "default": "#FFF3DC"
+    },
+    {
+     "type":"checkbox",
+     "id":"mobile_heading",
+     "label":"hide mobile heading",
+     "default":false
+    },
+    {
+     "type":"checkbox",
+     "id":"mobile_subheading",
+     "label":"hide mobile subheading",
+     "default":false
+    },
+
+
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "mobile_text_alignment",
+      "label": "Text Alignment for Mobile",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    }
+   
+  ],
+  "blocks": [
+    {
+      "type": "pickup_heading",
+      "name": "pickup Heading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading_text",
+          "label": "Heading Text",
+          "default": "Buy Online. Pick Up In Store"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "name": "paragraph",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "paragraph",
+          "label": "Paragraph",
+          "default": "this is paragraph"
+        }
+      ]
+    },
+    {
+      "type": "pickup_subheading",
+      "name": "pickup Subheading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "subheading_text",
+          "label": "Subheading Text",
+          "default": "Mrs. Fields cookies can also be purchased online and picked up in a store near you."
+        }
+      ]
+    },
+    {
+      "type": "pickup_button",
+      "name": "pickup Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Find A Store"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "promotional pickup Image",
+      "blocks": [
+        { "type": "pickup_heading" },
+        { "type": "pickup_subheading" },
+        { "type": "pickup_button" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  #section-{{ section.id }} {
+    --background-image: url('{{ section.settings.image | image_url }}');
+    --background-mobile-image: url('{{ section.settings.mobile_image | image_url }}');
+    --text-alignment: {{ section.settings.text_alignment }};
+    --btn-bg-color: {{ section.settings.btn_background_color }};
+    --btn-text-color: {{ section.settings.btn_text_color }};
+    --text-color: {{ section.settings.text_color }};
+    --mobile-text-alignment: {{ section.settings.mobile_text_alignment }};
+    --background-color:{{ section.settings.background_color }}
+  }
+</style>

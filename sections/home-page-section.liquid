@@ -1,0 +1,51 @@
+<div class="hero-image section">
+  <img src="{{ section.settings.image | img_url: 'master' }}" alt="Hero Image" class="hero-img">
+  <div class="hero-text">
+    <p class="{{ section.settings.text_size }}">{{ section.settings.text }}</p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero Image",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "Browse our latest Watch"
+    },
+    {
+      "type": "select",
+      "id": "text_size",
+      "label": "Text Size",
+      "options": [
+        {
+          "value": "large",
+          "label": "Large"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "small",
+          "label": "Small"
+        }
+      ],
+      "default": "large"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,167 @@
+<section id="section-{{ section.id }}" class="a-container">
+  <div class="banner">
+    <div class="img-with-text-button">
+      {% if section.settings.image %}
+        <div class="image-section promotional-img">
+          <img src="{{ section.settings.image | img_url: 'master' }}" alt="{{ section.settings.title }}">
+        </div>
+      {% endif %}
+
+      <div class="text-with-button" style="text-align: {{ section.settings.alignment }};">
+        <h2>{{ section.settings.title }}</h2>
+
+        <div
+          class="text-body {% if section.settings.hide_description_mobile %}hide-mobile{% endif %}"
+        >
+          {{ section.settings.text }}
+        </div>
+
+        <div class="clickButton">
+          <a href="{{ section.settings.button_url }}" class="custom-button">
+            {{ section.settings.button_text }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+   #section-{{ section.id }}  {
+    --background-color: {{ section.settings.background_color }};
+    --text-color: {{ section.settings.text_color }};
+    --description-color: {{ section.settings.description_color }};
+    --button-text-color: {{ section.settings.button_text_color }};
+    --button-background-color: {{ section.settings.button_background_color }};
+    --hover-background-color: {{ section.settings.hover_background_color }};
+    --hover-text-color: {{ section.settings.hover_text_color }};
+    --hover-description-color: {{ section.settings.hover_description_color }};
+    --hover-button-text-color: {{ section.settings.hover_button_text_color }};
+    --hover-button-background-color: {{ section.settings.hover_button_background_color }};
+    --mobile-button-bg-color:{{ section.settings.mobile_button_bg_color }};
+            --mobile-button-text-color:{{ section.settings.mobile_button_text_color }}
+
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Img-text-button",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Image with text"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Description",
+      "default": "<p>Write your description</p>"
+    },
+
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Label",
+      "default": "Click Me"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button Link",
+      "default": "/"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_description_mobile",
+      "label": "Hide Description on Mobile",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Button Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "hover_background_color",
+      "label": "Hover Background Color",
+      "default": "#f0f0f0"
+    },
+    {
+      "type": "color",
+      "id": "hover_text_color",
+      "label": "Hover Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "hover_description_color",
+      "label": "Hover Description Color",
+      "default": "#555555"
+    },
+    {
+      "type": "color",
+      "id": "hover_button_text_color",
+      "label": "Hover Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "hover_button_background_color",
+      "label": "Hover Button Background Color",
+      "default": "#333333"
+    },
+    {
+     "type": "color",
+      "id": "mobile_button_bg_color",
+      "label": "mobile button bg Color",
+      "default": "#ffffff"
+    },
+    {
+     "type": "color",
+      "id": "mobile_button_text_color",
+      "label": "mobile button text Color",
+      "default": "#ffffff"
+    },
+  ],
+  "presets": [
+    {
+      "name": "Image with text",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}

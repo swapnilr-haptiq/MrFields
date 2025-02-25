@@ -1,0 +1,460 @@
+{% comment %}
+  {% for link in linklists['main-menu'].links %}
+    {% assign child_list_handle = link.title | handleize %}
+    {% if linklists[child_list_handle].links != blank %}
+      <a href="{{ link.url }}">{{ link.title }}</a>
+      [
+      {%- for childlink in linklists[child_list_handle].links %}
+        <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+      {% endfor -%}
+      ]
+    {% else %}
+      <a href="{{ link.url }}">{{ link.title }}</a>
+    {% endif %}
+  {% endfor %}
+
+  <a href="/cart">cart</a>
+
+  {% if shop.customer_accounts_enabled %}
+    {% if customer %}
+      <a href="/account">account</a>
+      {{ 'log out' | customer_logout_link }}
+    {% else %}
+      {{ 'log in ' | customer_login_link }}
+      {{ 'register' | customer_register_link }}
+    {% endif %}
+  {% endif %}
+{% endcomment %}
+
+{% comment %}
+  <header>
+    <nav>
+      <a href="/">Home</a>
+
+      <a href="/collections/all">Collection</a>
+
+      <a href="/cart">Cart</a>
+    </nav>
+  </header>
+{% endcomment %}
+{% comment %}
+  {% comment %}
+  <header class="Header" id="header">
+    <div class="header-inner flex space-between">
+      <div class="menu-drawer">
+        {% unless template == 'product' %}
+          <button class="menu-button">
+            <span>Menu</span>
+          </button>
+        {% else %}
+          <a href="javascript:history.back()" class="menu-button">
+            <span>Back</span>
+          </a>
+        {% endunless %}
+      </div>
+
+      <a href="/" class="header-title">{{ shop.name }}</a>
+
+      <div class="cart-button-container" @click="toggleMiniCart">
+        <button class="cart-button">
+          <span>
+            <template v-if="cart"> cart (${cart.item_count}) </template>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <div class="mini-cart" :class="{hidden: miniCart}">
+      <button class="mini-cart-close-button" @click="toggleMiniCart">Close</button>
+      {% render 'mini-cart' %}
+    </div>
+
+    <div class="outside" v-if="!miniCart || !miniDrawer" @click="closeAllDrawers"></div>
+  </header>
+
+  <script>
+    if (document.querySelector('#header')) {
+      const headerCart = Vue.createApp({
+        delimiters: ['${', '}'], // Custom template delimiters
+        data() {
+          return {
+            cartData: store.state.cartState, // Corrected typo
+          };
+        },
+        methods: {
+          toggleMiniCart() {
+            toggleMiniCart.openCart();
+          },
+          closeAllDrawers(){
+          toggleClose.closeAll()
+          },
+          decrement(item) {
+            const data = {
+              id: item.key,
+              quantity: item.quantity - 1,
+            };
+            axios
+              .post('/cart/change.js', data)
+              .then((response) => {
+                store.getCart();
+              })
+              .catch((error) => console.log(error));
+          },
+
+          increment(item) {
+            const data = {
+              id: item.key,
+              quantity: item.quantity + 1,
+            };
+            axios
+              .post('/cart/change.js', data)
+              .then((response) => {
+                store.getCart();
+              })
+              .catch((error) => console.log(error));
+          },
+          money(value) {
+            if (!value) return 0;
+            return '$' + (value / 100).toFixed(2);
+          },
+        },
+        computed: {
+          miniCart() {
+            return miniCartState.hidden; // Fixed return statement
+          },
+          menuDrawer() {
+            return menuState.hidden; // Fixed return statement
+          },
+          cart() {
+            return this.cartData?.[0] || null; // Safe access to cartData
+          },
+        },
+        created() {
+          store.getCart(); // Fetch cart data on creation
+        },
+      }).mount('#header');
+    }
+  </script> {% endcomment %}
+{% endcomment %}
+
+{% comment %}
+  <header class="header" id="header">
+    <div class="header-inner flex space-between">
+      {% unless template == 'product' %}
+        <button class="menu-button" @click="toggleMenu">
+          <svg class="menu-arrow-icon">
+            {% render 'header-arrow' %}
+          </svg>
+          <span>Menu</span>
+        </button>
+      {% else %}
+        <a href="javascript:history.back()" class="menu-button">
+          <svg class="menu-arrow-icon" style="transform:none;">
+            {% render 'header-arrow' %}
+          </svg>
+          <span>Back</span>
+        </a>
+      {% endunless %}
+
+      <a href="/" class="header-title">{{ shop.name }}</a>
+
+      <div class="cart-button-container" @click="toggleMiniCart">
+        <button class="cart-button">
+          <span>
+            <template v-if="cart">cart (${ cart.item_count })</template>
+          </span>
+          <svg class="cart-arrow-icon">
+            {% render 'header-arrow' %}
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="header-mobile">
+      <a href="/" class="header-title">{{ shop.name }}</a>
+      <div class="mobile-nav">
+        <button class="mobile-nav-button" @click="toggleMenu">
+          <span>Menu</span>
+        </button>
+        <button class="mobile-nav-button" @click="toggleMiniCart">
+          <span>Cart</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="menu-drawer" :class="{hidden: menuDrawer}">
+      {% render 'menu-drawer' %}
+    </div>
+
+    <div class="mini-cart" :class="{ hidden: miniCart }">
+      <button class="mini-cart-close-button" @click="toggleMiniCart">Close</button>
+      {% render 'mini-cart' %}
+    </div>
+
+    <div class="outside" v-if="!miniCart || !menuDrawer" @click="closeAllDrawers"></div>
+  </header>
+
+  <script>
+    if (document.querySelector('#header')) {
+      const headerCart = Vue.createApp({
+        delimiters: ['${', '}'],
+        data() {
+          return {
+            cartData: store.state.cartState,
+            menuDrawer: false,
+          };
+        },
+
+        methods: {
+          toggleMiniCart() {
+            toggleMiniCart.openCart();
+          },
+          closeAllDrawers() {
+            toggleClose.closeAll();
+          },
+          toggleMenu() {
+            this.menuDrawer = !this.menuDrawer;
+          },
+
+          decrement(item) {
+            const data = {
+              id: item.key,
+              quantity: Math.max(item.quantity - 1, 0),
+            };
+            axios
+              .post('/cart/change.js', data)
+              .then((response) => {
+                store.getCart();
+              })
+              .catch((error) => console.log('Error decrementing item:', error));
+          },
+          increment(item) {
+            const data = {
+              id: item.key,
+              quantity: item.quantity + 1,
+            };
+            axios
+              .post('/cart/change.js', data)
+              .then((response) => {
+                store.getCart();
+              })
+              .catch((error) => console.log('Error incrementing item:', error));
+          },
+          money(value) {
+            if (!value) return '$0.00';
+            return '$' + (value / 100).toFixed(2);
+          },
+          fetchCartData() {
+            axios
+              .get('/cart.js')
+              .then((response) => {
+                this.cartData = response.data;
+              })
+              .catch((error) => {
+                console.error('Error fetching cart data:', error);
+              });
+          },
+        },
+        computed: {
+          miniCart() {
+            return miniCartState.hidden;
+          },
+          menuDrawer() {
+            return menuState.hidden;
+          },
+          cart() {
+            return this.cartData[0];
+          },
+        },
+        created() {
+          store.getCart();
+        },
+      }).mount('#header');
+    }
+  </script>
+{% endcomment %}
+
+
+{% comment %} 
+<header class="header" id="header">
+  <div class="header-inner flex space-between">
+    {% unless template == 'product' %}
+      <button class="menu-button" @click="toggleMenu">
+        <svg class="menu-arrow-icon">
+          {% render 'header-arrow' %}
+        </svg>
+        <span>Menu</span>
+      </button>
+    {% else %}
+      <a href="javascript:history.back()" class="menu-button">
+        <svg class="menu-arrow-icon" style="transform:none;">
+          {% render 'header-arrow' %}
+        </svg>
+        <span>Back</span>
+      </a>
+    {% endunless %}
+
+    <a href="/" class="header-title">{{ shop.name }}</a>
+
+    <div class="cart-button-container" @click="toggleMiniCart">
+      <button class="cart-button">
+        <span>
+          <template v-if="cart">cart (${ cart.item_count })</template>
+        </span>
+        <svg class="cart-arrow-icon">
+          {% render 'header-arrow' %}
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="header-mobile">
+    <a href="/" class="header-title">{{ shop.name }}</a>
+    <div class="mobile-nav">
+      <button class="mobile-nav-button" @click="toggleMenu">
+        <span>Menu</span>
+      </button>
+      <button class="mobile-nav-button" @click="toggleMiniCart">
+        <span>Cart</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="menu-drawer" :class="{ hidden: !menuDrawer }">
+    {% render 'menu-drawer' %}
+  </div>
+
+  <div class="mini-cart" :class="{ hidden: !miniCart }">
+    <button class="mini-cart-close-button" @click="toggleMiniCart">Close</button>
+    {% render 'mini-cart' %}
+  </div>
+
+  <div class="outside" v-if="!miniCart && !menuDrawer" @click="closeAllDrawers"></div>
+</header>
+
+<script>
+  if (document.querySelector('#header')) {
+    const headerCart = Vue.createApp({
+      delimiters: ['${', '}'],
+      data() {
+        return {
+          cartData: [],
+          menuDrawer: false,
+          miniCart: false,
+        };
+      },
+
+      methods: {
+        toggleMiniCart() {
+          this.miniCart = !this.miniCart;
+          if (this.miniCart) {
+            this.menuDrawer = false;
+          }
+        },
+        closeAllDrawers() {
+          this.miniCart = false;
+          this.menuDrawer = false;
+        },
+        toggleMenu() {
+          this.menuDrawer = !this.menuDrawer;
+          if (this.menuDrawer) {
+            this.miniCart = false; /
+          }
+        },
+        decrement(item) {
+          const data = {
+            id: item.key,
+            quantity: Math.max(item.quantity - 1, 0),
+          };
+          axios
+            .post('/cart/change.js', data)
+            .then((response) => {
+              store.getCart();
+            })
+            .catch((error) => console.log('Error decrementing item:', error));
+        },
+        increment(item) {
+          const data = {
+            id: item.key,
+            quantity: item.quantity + 1,
+          };
+          axios
+            .post('/cart/change.js', data)
+            .then((response) => {
+              store.getCart();
+            })
+            .catch((error) => console.log('Error incrementing item:', error));
+        },
+        money(value) {
+          if (!value) return '$0.00';
+          return '$' + (value / 100).toFixed(2);
+        },
+        fetchCartData() {
+          axios
+            .get('/cart.js')
+            .then((response) => {
+              this.cartData = response.data;
+            })
+            .catch((error) => {
+              console.error('Error fetching cart data:', error);
+            });
+        },
+      },
+      computed: {
+        cart() {
+          return this.cartData[0];
+        },
+      },
+      created() {
+        store.getCart();
+      },
+    }).mount('#header');
+  }
+</script>  {% endcomment %}
+
+
+
+<div class="custom-header">
+  <div class="header-left">
+    <a href="{{ routes.root_url }}" class="nav-link">Home</a>
+  </div>
+
+  <div class="header-center">
+    <a href="/collections/all" class="nav-link">Store Catalog</a>
+  </div>
+
+  <div class="header-right">
+    <a href="{{ routes.cart_url }}" class="nav-link">Cart</a>
+  </div>
+</div>
+
+<style>
+  .custom-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 15px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+  }
+
+  .header-left, .header-center, .header-right {
+    flex: 1;
+    text-align: center;
+  }
+
+  .header-left { text-align: left; }
+  .header-right { text-align: right; }
+
+  .nav-link {
+    text-decoration: none;
+    color: #000;
+    transition: color 0.3s;
+  }
+
+  .nav-link:hover {
+    color: #0073e6;
+  }
+</style>

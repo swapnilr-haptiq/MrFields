@@ -1,0 +1,208 @@
+{
+  "article": [],
+  "blog": [],
+  "brand": [],
+  "collection": [
+    {
+      "key": "product_collections",
+      "namespace": "custom",
+      "name": "Product Collections",
+      "description": "",
+      "type": {
+        "name": "product_reference",
+        "category": "REFERENCE"
+      }
+    }
+  ],
+  "company": [],
+  "company_location": [],
+  "location": [],
+  "market": [],
+  "order": [],
+  "page": [],
+  "product": [
+    {
+      "key": "age-group",
+      "namespace": "shopify",
+      "name": "Age group",
+      "description": "Defines the target age range for a product, such as adults or kids",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "case-color",
+      "namespace": "shopify",
+      "name": "Case color",
+      "description": "Specifies the color of a product's case, such as clear or white",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "dial-color",
+      "namespace": "shopify",
+      "name": "Dial color",
+      "description": "Specifies the color of a watch's dial or face, such as gold or multicolor",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "target-gender",
+      "namespace": "shopify",
+      "name": "Target gender",
+      "description": "Identifies the intended gender for a product, such as female, male or unisex",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "watch-display",
+      "namespace": "shopify",
+      "name": "Watch display",
+      "description": "Distinguishes between watch displays, such as digital or analog",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "connectivity-technology",
+      "namespace": "shopify",
+      "name": "Connectivity technology",
+      "description": "Defines the method of data transfer in a product, e.g. Bluetooth, USB",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "watch-material",
+      "namespace": "shopify",
+      "name": "Watch material",
+      "description": "Specifies the type of material used for the watch, such as titanium or silicone",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "smart-watch-features",
+      "namespace": "shopify",
+      "name": "Smart watch features",
+      "description": "Describes the capabilities of a smart watch, such as fitness tracker or waterproof",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "band-color",
+      "namespace": "shopify",
+      "name": "Band color",
+      "description": "Specifies the color of a watch band, e.g. multicolor, rose gold",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "watch-features",
+      "namespace": "shopify",
+      "name": "Watch features",
+      "description": "Identifies special characteristics of a watch, such as automatic movement or luminous hands",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "queries",
+      "namespace": "shopify--discovery--product_search_boost",
+      "name": "Search product boosts",
+      "description": "List of search queries for which a product gets higher rank in search results",
+      "type": {
+        "name": "list.single_line_text_field",
+        "category": "TEXT"
+      }
+    },
+    {
+      "key": "related_products",
+      "namespace": "shopify--discovery--product_recommendation",
+      "name": "Related products",
+      "description": "List of related products",
+      "type": {
+        "name": "list.product_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "related_products_display",
+      "namespace": "shopify--discovery--product_recommendation",
+      "name": "Related products settings",
+      "description": "Determines how related products are displayed along with algorithmic product recommendations",
+      "type": {
+        "name": "single_line_text_field",
+        "category": "TEXT"
+      }
+    },
+    {
+      "key": "complementary_products",
+      "namespace": "shopify--discovery--product_recommendation",
+      "name": "Complementary products",
+      "description": "List of complementary products",
+      "type": {
+        "name": "list.product_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "glass",
+      "namespace": "custom",
+      "name": "Glass",
+      "description": "",
+      "type": {
+        "name": "single_line_text_field",
+        "category": "TEXT"
+      }
+    },
+    {
+      "key": "allergen-information",
+      "namespace": "shopify",
+      "name": "Allergen information",
+      "description": "Indicates potential allergens present in food or beverages, such as wheat or peanuts",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "flavor",
+      "namespace": "shopify",
+      "name": "Flavor",
+      "description": "Specifies the taste or flavor of a product, e.g. vanilla, mint",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    }
+  ],
+  "variant": [
+    {
+      "key": "size",
+      "namespace": "custom",
+      "name": "size",
+      "description": "",
+      "type": {
+        "name": "number_integer",
+        "category": "NUMBER"
+      }
+    }
+  ],
+  "shop": []
+}

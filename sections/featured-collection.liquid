@@ -1,0 +1,1083 @@
+{% comment %}
+  <section id="section-{{ section.id }}" class="featured-collection">
+    <div class="container">
+      <h2 class="section-title">{{ section.settings.heading }}</h2>
+      <p class="filter-text">{{ section.settings.filter_text }}</p>
+      {% render 'gift_filters',
+        products: collections[section.settings.collection].products,
+        show_treat_filter: section.settings.show_treat_filter,
+        show_occasion_filter: section.settings.show_occasion_filter,
+        show_budget_filter: section.settings.show_budget_filter
+      %}
+
+      <div class="products-card-section">
+        {% assign selected_collection = section.settings.collection %}
+        {% if selected_collection != blank %}
+          {% assign product_collection = collections[selected_collection] %}
+          <p class="total-items">{{ product_collection.products.size }} items</p>
+
+          <div class="product-list slick-slider">
+            {% for product in product_collection.products %}
+              <div class="product-item">
+                {% render 'product-detail', product: product %}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      <div class="button-wrapper">
+        <button class="leftBtn">
+          <img src="{{ 'leftA.png' | asset_url }}" alt="Left Arrow">
+        </button>
+        <button class="rightBtn">
+          <img src="{{ 'RightA.png' | asset_url }}" alt="right Arrow">
+        </button>
+      </div>
+    </div>
+
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        $('.slick-slider').slick({
+          infinite: true,
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          dots: true,
+          dotsClass: 'slick-dots',
+          responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+              },
+            },
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+              },
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+              },
+            },
+          ],
+          prevArrow: $('.leftBtn'),
+          nextArrow: $('.rightBtn'),
+        });
+      });
+      $('.leftBtn').on('click', function () {});
+      $('.rightBtn').on('click', function () {});
+    </script>
+  </section>
+
+
+  <style>
+    #section-{{ section.id }} {
+      --backgrounda-color: {{ section.settings.background_color }};
+      --text-color: {{ section.settings.text_color }};
+      --card-background-color: {{ section.settings.card_background_color }};
+      --card-text-color: {{ section.settings.card_text_color }};
+      --slider-button-background-color: {{ section.settings.slider_button_background_color }};
+      --filter-background-color: {{ section.settings.filter_background_color }};
+      --filter-text-color: {{ section.settings.filter_text_color }};
+      --discount-background-color: {{ section.settings.discount_background_color }};
+      --discount-text-color: {{ section.settings.discount_text_color }}
+    }
+  </style>
+
+
+  {% schema %}
+  {
+    "name": "Featured Collection",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Cookies speak louder than words"
+      },
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Select Collection",
+      },
+      {
+        "type": "text",
+        "id": "filter_text",
+        "label": "Filter Heading",
+        "default": "Choose Your Gift"
+      },
+
+      {
+        "type": "textarea",
+        "id": "treat_tags",
+        "label": "Treat Options",
+        "default": "Original Cookies,Brownie Bites,Nibblers"
+      },
+       {
+        "type": "checkbox",
+        "id": "show_treat_filter",
+        "label": "Show Treat Filter",
+        "default": true
+      },
+
+      {
+        "type": "textarea",
+        "id": "occasion_tags",
+        "label": "Occasion Options",
+        "default": "Birthday,Thank You,Signature,,Get Well,Sympathy"
+      },
+       {
+        "type": "checkbox",
+        "id": "show_occasion_filter",
+        "label": "Show Occasion Filter",
+        "default": true
+      },
+
+      {
+        "type": "textarea",
+        "id": "budget_tags",
+        "label": "Budget Options",
+        "default": "Under $30,$30 to $50,$50 to $75,$75 to $100,Over $100"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_budget_filter",
+        "label": "Show Budget Filter",
+        "default": true
+      },
+
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color",
+        "default": "#FFF3DC"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default": "#232323"
+      },
+      {
+        "type": "color",
+        "id": "filter_background_color",
+        "label": "filter Background Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "filter_text_color",
+        "label": "filter Text Color",
+        "default": "#232323"
+      },
+
+      {
+        "type": "color",
+        "id": "card_background_color",
+        "label": "Card Background Color",
+        "default": "#FFF3DC"
+      },
+      {
+        "type": "color",
+        "id": "card_text_color",
+        "label": "Card Text Color",
+        "default": "#232323"
+      },
+      {
+        "type": "color",
+        "id": "discount_background_color",
+        "label": "Discount Background Color",
+        "default": "#C4122E"
+      },
+      {
+        "type": "color",
+        "id": "discount_text_color",
+        "label": "Discount Text Color",
+        "default": "#FFF"
+      },
+      {
+        "type": "color",
+        "id": "slider_button_background_color",
+        "label": "Arrows Background Color",
+        "default": "#C4122E"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured Collection"
+      }
+    ]
+  }
+  {% endschema %}
+{% endcomment %}
+
+
+{% comment %} 
+
+<section id="section-{{ section.id }}" class="featured-collection">
+  <div class="container">
+    <h2 class="section-title">{{ section.settings.heading }}</h2>
+    <p class="filter-text">{{ section.settings.filter_text }}</p>
+    {% render 'gift_filters',
+      products: collections[section.settings.collection].products,
+      show_treat_filter: section.settings.show_treat_filter,
+      show_occasion_filter: section.settings.show_occasion_filter,
+      show_budget_filter: section.settings.show_budget_filter
+    %}
+
+    <div class="products-card-section">
+      {% assign selected_collection = section.settings.collection %}
+      {% if selected_collection != blank %}
+        {% assign product_collection = collections[selected_collection] %}
+        {% comment %} <p class="total-items">{{ product_collection.products.size }} items</p> {% endcomment %}
+
+        <div class="product-container">
+          <div class="product-list slick-slider">
+            {% for product in product_collection.products %}
+              <div class="product-item">
+                {% render 'product-detail', product: product %}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+    <div class="button-wrapper">
+      <button class="leftBtn">
+        <img src="{{ 'leftA.png' | asset_url }}" alt="Left Arrow">
+      </button>
+      <button class="rightBtn">
+        <img src="{{ 'RightA.png' | asset_url }}" alt="right Arrow">
+      </button>
+    </div>
+  </div>
+</section> {% endcomment %}
+
+
+
+{% comment %} <section id="section-{{ section.id }}" class="featured-collection">
+    <div class="container">
+      <h2 class="section-title">{{ section.settings.heading }}</h2>
+      <p class="filter-text">{{ section.settings.filter_text }}</p>
+      {% render 'gift_filters',
+        products: collections[section.settings.collection].products,
+        show_treat_filter: section.settings.show_treat_filter,
+        show_occasion_filter: section.settings.show_occasion_filter,
+        show_budget_filter: section.settings.show_budget_filter
+      %}
+
+      <div class="products-card-section">
+        {% assign selected_collection = section.settings.collection %}
+        {% if selected_collection != blank %}
+          {% assign product_collection = collections[selected_collection] %}
+          <p class="total-items">{{ product_collection.products.size }} items</p>
+
+          <div class="product-list slick-slider">
+            {% for product in product_collection.products %}
+              <div class="product-item">
+                {% render 'product-detail', product: product %}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      <div class="button-wrapper">
+        <button class="leftBtn">
+          <img src="{{ 'leftA.png' | asset_url }}" alt="Left Arrow">
+        </button>
+        <button class="rightBtn">
+          <img src="{{ 'RightA.png' | asset_url }}" alt="right Arrow">
+        </button>
+      </div>
+    </div>
+  </section> {% endcomment %}
+
+{% comment %} 
+  <section id="section-{{ section.id }}" class="featured-collection section-{{ section.id }}">
+    <div class="container container-{{ section.id }}">
+      <h2 class="section-title section-title-{{ section.id }}">{{ section.settings.heading }}</h2>
+      <p class="filter-text filter-text-{{ section.id }}">{{ section.settings.filter_text }}</p>
+      {% render 'gift_filters',
+        products: collections[section.settings.collection].products,
+        show_treat_filter: section.settings.show_treat_filter,
+        show_occasion_filter: section.settings.show_occasion_filter,
+        show_budget_filter: section.settings.show_budget_filter
+      %}
+
+      <div class="products-card-section products-card-section-{{ section.id }}">
+        {% assign selected_collection = section.settings.collection %}
+        {% if selected_collection != blank %}
+          {% assign product_collection = collections[selected_collection] %}
+          <p class="total-items total-items-{{ section.id }}">{{ product_collection.products.size }} items</p>
+
+          <div class="product-list slick-slider product-list-{{ section.id }}">
+            {% for product in product_collection.products %}
+              <div class="product-item product-item-{{ section.id }}">
+                {% render 'product-detail', product: product %}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      <div class="button-wrapper button-wrapper-{{ section.id }}">
+        <button class="leftBtn leftBtn-{{ section.id }}">
+          <img src="{{ 'leftA.png' | asset_url }}" alt="Left Arrow">
+        </button>
+        <button class="rightBtn rightBtn-{{ section.id }}">
+          <img src="{{ 'RightA.png' | asset_url }}" alt="right Arrow">
+        </button>
+      </div>
+    </div>
+</section> {% endcomment %}
+
+
+{% comment %} 
+<style>
+  #section-{{ section.id }} {
+    --backgrounda-color: {{ section.settings.background_color }};
+    --text-color: {{ section.settings.text_color }};
+    --card-background-color: {{ section.settings.card_background_color }};
+    --card-text-color: {{ section.settings.card_text_color }};
+    --slider-button-background-color: {{ section.settings.slider_button_background_color }};
+    --filter-background-color: {{ section.settings.filter_background_color }};
+    --filter-text-color: {{ section.settings.filter_text_color }};
+    --discount-background-color: {{ section.settings.discount_background_color }};
+    --discount-text-color: {{ section.settings.discount_text_color }};
+    --slick-dots-bg: {{ section.settings.slick_dots_bg }}
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Cookies speak louder than words"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Select Collection"
+    },
+    {
+      "type": "text",
+      "id": "filter_text",
+      "label": "Filter Heading",
+      "default": "Choose Your Gift"
+    },
+
+    {
+      "type": "textarea",
+      "id": "treat_tags",
+      "label": "Treat Options",
+      "default": "Original Cookies,Brownie Bites,Nibblers"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_treat_filter",
+      "label": "Show Treat Filter",
+      "default": true
+    },
+
+    {
+      "type": "textarea",
+      "id": "occasion_tags",
+      "label": "Occasion Options",
+      "default": "Birthday,Thank You,Signature,,Get Well,Sympathy"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_occasion_filter",
+      "label": "Show Occasion Filter",
+      "default": true
+    },
+
+    {
+      "type": "textarea",
+      "id": "budget_tags",
+      "label": "Budget Options",
+      "default": "Under $30,$30 to $50,$50 to $75,$75 to $100,Over $100"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_budget_filter",
+      "label": "Show Budget Filter",
+      "default": true
+    },
+
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#FFF3DC"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#232323"
+    },
+    {
+      "type": "color",
+      "id": "filter_background_color",
+      "label": "filter Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "filter_text_color",
+      "label": "filter Text Color",
+      "default": "#232323"
+    },
+
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "Card Background Color",
+      "default": "#FFF3DC"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Card Text Color",
+      "default": "#232323"
+    },
+    {
+      "type": "color",
+      "id": "discount_background_color",
+      "label": "Discount Background Color",
+      "default": "#C4122E"
+    },
+    {
+      "type": "color",
+      "id": "discount_text_color",
+      "label": "Discount Text Color",
+      "default": "#FFF"
+    },
+    {
+      "type": "color",
+      "id": "slider_button_background_color",
+      "label": "Arrows Background Color",
+      "default": "#C4122E"
+    },
+    {
+      "type": "color",
+      "id": "slick_dots_bg",
+      "label": "Slick Dots Background Color",
+      "default": "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection"
+    }
+  ]
+}
+{% endschema %} {% endcomment %}
+
+
+
+
+
+
+
+
+
+{% comment %} last  {% endcomment %}
+
+
+
+
+{% comment %} 
+
+<section id="section-{{ section.id }}" class="featured-collection">
+  <div class="container">
+    <h2 class="section-title">{{ section.settings.heading }}</h2>
+    <p class="filter-text">{{ section.settings.filter_text }}</p>
+    {% render 'gift_filters',
+      products: collections[section.settings.collection].products,
+      show_treat_filter: section.settings.show_treat_filter,
+      show_occasion_filter: section.settings.show_occasion_filter,
+      show_budget_filter: section.settings.show_budget_filter
+    %}
+
+    <div class="products-card-section">
+      {% assign selected_collection = section.settings.collection %}
+      {% if selected_collection != blank %}
+        {% assign product_collection = collections[selected_collection] %}
+        <p class="total-items">{{ product_collection.products.size }} items</p>
+
+        <div class="product-container">
+          <div class="product-list slick-slider">
+            {% for product in product_collection.products %}
+              <div class="product-item">
+                {% render 'product-detail', product: product %}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+    <div class="button-wrapper">
+      <button class="leftBtn">
+        <img src="{{ 'leftA.png' | asset_url }}" alt="Left Arrow">
+      </button>
+      <button class="rightBtn">
+        <img src="{{ 'RightA.png' | asset_url }}" alt="right Arrow">
+      </button>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<style>
+  #section-{{ section.id }} {
+    --background-color: {{ section.settings.background_color }};
+    --text-color: {{ section.settings.text_color }};
+    --card-background-color: {{ section.settings.card_background_color }};
+    --card-text-color: {{ section.settings.card_text_color }};
+    --slider-button-background-color: {{ section.settings.slider_button_background_color }};
+    --filter-background-color: {{ section.settings.filter_background_color }};
+    --filter-text-color: {{ section.settings.filter_text_color }};
+    --discount-background-color: {{ section.settings.discount_background_color }};
+    --discount-text-color: {{ section.settings.discount_text_color }};
+    --slick-dots-bg: {{ section.settings.slick_dots_bg }}
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Cookies speak louder than words"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Select Collection"
+    },
+    {
+      "type": "text",
+      "id": "filter_text",
+      "label": "Filter Heading",
+      "default": "Choose Your Gift"
+    },
+
+    {
+      "type": "textarea",
+      "id": "treat_tags",
+      "label": "Treat Options",
+      "default": "Original Cookies,Brownie Bites,Nibblers"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_treat_filter",
+      "label": "Show Treat Filter",
+      "default": true
+    },
+
+    {
+      "type": "textarea",
+      "id": "occasion_tags",
+      "label": "Occasion Options",
+      "default": "Birthday,Thank You,Signature,,Get Well,Sympathy"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_occasion_filter",
+      "label": "Show Occasion Filter",
+      "default": true
+    },
+
+    {
+      "type": "textarea",
+      "id": "budget_tags",
+      "label": "Budget Options",
+      "default": "Under $30,$30 to $50,$50 to $75,$75 to $100,Over $100"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_budget_filter",
+      "label": "Show Budget Filter",
+      "default": true
+    },
+
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#FFF3DC"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#232323"
+    },
+    {
+      "type": "color",
+      "id": "filter_background_color",
+      "label": "filter Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "filter_text_color",
+      "label": "filter Text Color",
+      "default": "#232323"
+    },
+
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "Card Background Color",
+      "default": "#FFF3DC"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Card Text Color",
+      "default": "#232323"
+    },
+    {
+      "type": "color",
+      "id": "discount_background_color",
+      "label": "Discount Background Color",
+      "default": "#C4122E"
+    },
+    {
+      "type": "color",
+      "id": "discount_text_color",
+      "label": "Discount Text Color",
+      "default": "#FFF"
+    },
+    {
+      "type": "color",
+      "id": "slider_button_background_color",
+      "label": "Arrows Background Color",
+      "default": "#C4122E"
+    },
+     {
+      "type": "color",
+      "id": "slick_dots_bg",
+      "label": "Slick Dots Background Color",
+      "default": "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection"
+    }
+  ]
+}
+{% endschema %} {% endcomment %}
+
+
+
+
+
+
+{% comment %} LAST ONE  {% endcomment %}
+{% comment %} 
+<section id="section-{{ section.id }}" class="featured-collection">
+  <div class="container">
+    <h2 class="section-title">{{ section.settings.heading }}</h2>
+    <p class="filter-text">{{ section.settings.filter_text }}</p>
+    {% render 'gift_filters',
+      products: collections[section.settings.collection].products,
+      show_treat_filter: section.settings.show_treat_filter,
+      show_occasion_filter: section.settings.show_occasion_filter,
+      show_budget_filter: section.settings.show_budget_filter
+    %}
+
+    <div class="products-card-section">
+      {% assign selected_collection = section.settings.collection %}
+      {% if selected_collection != blank %}
+        {% assign product_collection = collections[selected_collection] %}
+        <p class="total-items">{{ product_collection.products.size }} items</p>
+
+        <div class="product-container">
+          <div class="featured-product-list slick-slider">
+            {% for product in product_collection.products %}
+              <div class="product-item">
+                {% render 'product-detail', product: product %}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+    <div class="button-wrapper">
+      <button class="leftBtn">
+        <img src="{{ 'leftA.png' | asset_url }}" alt="Left Arrow">
+      </button>
+      <button class="rightBtn">
+        <img src="{{ 'RightA.png' | asset_url }}" alt="Right Arrow">
+      </button>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<style>
+  #section-{{ section.id }} {
+    --background-color: {{ section.settings.background_color }};
+    --text-color: {{ section.settings.text_color }};
+    --card-background-color: {{ section.settings.card_background_color }};
+    --card-text-color: {{ section.settings.card_text_color }};
+    --slider-button-background-color: {{ section.settings.slider_button_background_color }};
+    --filter-background-color: {{ section.settings.filter_background_color }};
+    --filter-text-color: {{ section.settings.filter_text_color }};
+    --discount-background-color: {{ section.settings.discount_background_color }};
+    --discount-text-color: {{ section.settings.discount_text_color }};
+    --slick-dots-bg: {{ section.settings.slick_dots_bg }}
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Cookies speak louder than words"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Select Collection"
+    },
+    {
+      "type": "text",
+      "id": "filter_text",
+      "label": "Filter Heading",
+      "default": "Choose Your Gift"
+    },
+
+    {
+      "type": "textarea",
+      "id": "treat_tags",
+      "label": "Treat Options",
+      "default": "Original Cookies,Brownie Bites,Nibblers"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_treat_filter",
+      "label": "Show Treat Filter",
+      "default": true
+    },
+
+    {
+      "type": "textarea",
+      "id": "occasion_tags",
+      "label": "Occasion Options",
+      "default": "Birthday,Thank You,Signature,,Get Well,Sympathy"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_occasion_filter",
+      "label": "Show Occasion Filter",
+      "default": true
+    },
+
+    {
+      "type": "textarea",
+      "id": "budget_tags",
+      "label": "Budget Options",
+      "default": "Under $30,$30 to $50,$50 to $75,$75 to $100,Over $100"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_budget_filter",
+      "label": "Show Budget Filter",
+      "default": true
+    },
+
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#FFF3DC"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#232323"
+    },
+    {
+      "type": "color",
+      "id": "filter_background_color",
+      "label": "filter Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "filter_text_color",
+      "label": "filter Text Color",
+      "default": "#232323"
+    },
+
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "Card Background Color",
+      "default": "#FFF3DC"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Card Text Color",
+      "default": "#232323"
+    },
+    {
+      "type": "color",
+      "id": "discount_background_color",
+      "label": "Discount Background Color",
+      "default": "#C4122E"
+    },
+    {
+      "type": "color",
+      "id": "discount_text_color",
+      "label": "Discount Text Color",
+      "default": "#FFF"
+    },
+    {
+      "type": "color",
+      "id": "slider_button_background_color",
+      "label": "Arrows Background Color",
+      "default": "#C4122E"
+    },
+     {
+      "type": "color",
+      "id": "slick_dots_bg",
+      "label": "Slick Dots Background Color",
+      "default": "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection"
+    }
+  ]
+}
+{% endschema %} {% endcomment %}
+
+
+{% comment %} END LAST ONE  {% endcomment %}
+
+
+
+
+
+
+<section id="section-{{ section.id }}" class="featured-collection">
+  <div class="container">
+    <h2 class="section-title">{{ section.settings.heading }}</h2>
+    <p class="filter-text">{{ section.settings.filter_text }}</p>
+    {% render 'gift_filters',
+      products: collections[section.settings.collection].products,
+      show_treat_filter: section.settings.show_treat_filter,
+      show_occasion_filter: section.settings.show_occasion_filter,
+      show_budget_filter: section.settings.show_budget_filter
+    %}
+
+    <div class="products-card-section">
+      {% assign selected_collection = section.settings.collection %}
+      {% if selected_collection != blank %}
+        {% assign product_collection = collections[selected_collection] %}
+        <p class="total-items">{{ product_collection.products.size }} items</p>
+
+        <div class="product-container">
+          <div class="featured-product-list slick-slider">
+            {% for product in product_collection.products %}
+              <div class="product-item">
+                {% render 'product-detail', product: product %}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+    <div class="button-wrapper">
+      <button class="leftBtn">
+        <img src="{{ 'leftA.png' | asset_url }}" alt="Left Arrow">
+      </button>
+      <button class="rightBtn">
+        <img src="{{ 'RightA.png' | asset_url }}" alt="Right Arrow">
+      </button>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<style>
+  #section-{{ section.id }} {
+    --background-color: {{ section.settings.background_color }};
+    --text-color: {{ section.settings.text_color }};
+    --card-background-color: {{ section.settings.card_background_color }};
+    --card-text-color: {{ section.settings.card_text_color }};
+    --slider-button-background-color: {{ section.settings.slider_button_background_color }};
+    --filter-background-color: {{ section.settings.filter_background_color }};
+    --filter-text-color: {{ section.settings.filter_text_color }};
+    --discount-background-color: {{ section.settings.discount_background_color }};
+    --discount-text-color: {{ section.settings.discount_text_color }};
+    --slick-dots-bg: {{ section.settings.slick_dots_bg }}
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Cookies speak louder than words"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Select Collection"
+    },
+    {
+      "type": "text",
+      "id": "filter_text",
+      "label": "Filter Heading",
+      "default": "Choose Your Gift"
+    },
+
+    {
+      "type": "textarea",
+      "id": "treat_tags",
+      "label": "Treat Options",
+      "default": "Original Cookies,Brownie Bites,Nibblers"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_treat_filter",
+      "label": "Show Treat Filter",
+      "default": true
+    },
+
+    {
+      "type": "textarea",
+      "id": "occasion_tags",
+      "label": "Occasion Options",
+      "default": "Birthday,Thank You,Signature,,Get Well,Sympathy"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_occasion_filter",
+      "label": "Show Occasion Filter",
+      "default": true
+    },
+
+    {
+      "type": "textarea",
+      "id": "budget_tags",
+      "label": "Budget Options",
+      "default": "Under $30,$30 to $50,$50 to $75,$75 to $100,Over $100"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_budget_filter",
+      "label": "Show Budget Filter",
+      "default": true
+    },
+
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#FFF3DC"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#232323"
+    },
+    {
+      "type": "color",
+      "id": "filter_background_color",
+      "label": "filter Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "filter_text_color",
+      "label": "filter Text Color",
+      "default": "#232323"
+    },
+
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "Card Background Color",
+      "default": "#FFF3DC"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Card Text Color",
+      "default": "#232323"
+    },
+    {
+      "type": "color",
+      "id": "discount_background_color",
+      "label": "Discount Background Color",
+      "default": "#C4122E"
+    },
+    {
+      "type": "color",
+      "id": "discount_text_color",
+      "label": "Discount Text Color",
+      "default": "#FFF"
+    },
+    {
+      "type": "color",
+      "id": "slider_button_background_color",
+      "label": "Arrows Background Color",
+      "default": "#C4122E"
+    },
+     {
+      "type": "color",
+      "id": "slick_dots_bg",
+      "label": "Slick Dots Background Color",
+      "default": "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection"
+    }
+  ]
+}
+{% endschema %}

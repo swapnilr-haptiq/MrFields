@@ -1,0 +1,33 @@
+<div class="product-card-wrapper-tab">
+  <div class="product-image">
+    <img src="{{ product.featured_image | img_url: '500x' }}" alt="{{ product.title }}" loading="lazy">
+  </div>
+
+  <div class="product-details">
+    {% if product.compare_at_price > product.price %}
+      {% assign discount_percentage = product.compare_at_price
+        | minus: product.price
+        | times: 100
+        | divided_by: product.compare_at_price
+        | round
+      %}
+      <div class="discount">
+        <span class="discount-value">{{ discount_percentage }}%</span>
+        <span class="discount-text">Off</span>
+      </div>
+    {% endif %}
+    
+    <img src="{{ 'rating.png' | asset_url }}" alt="Stars Image" width="100%" height="auto">
+    <h3>{{ product.title }}</h3>
+    <div class="product-price-wrapper">
+      {% if product.compare_at_price %}
+        <p class="compare-at-price">
+          <s>${{ product.compare_at_price | money_without_currency }}</s>
+        </p>
+      {% endif %}
+      <p class="price">${{ product.price | money_without_currency }}</p>
+    </div>
+  </div>
+</div>
+
+

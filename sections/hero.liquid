@@ -1,0 +1,849 @@
+{% comment %}
+   <div id="section-{{ section.id }}" class="hero-image">
+    <img src="{{ section.settings.image | img_url: 'master' }}" alt="Hero Image" class="hero-img">
+
+    {% comment %} <div class="hero-text hero-align-{{ section.settings.text_alignment }}"> {% endcomment %}
+     <div class="hero-text hero-align-{{ section.settings.text_alignment }} hero-container-align-{{ section.settings.container_alignment }}">
+
+      <div class="hero-text-wrapper">
+        <div class="hero-content">
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when "heading" %}
+                <h3 class="hero-heading">{{ block.settings.heading }}</h3>
+              {% when "subheading" %}
+                <h2 class="hero-subheading">{{ block.settings.subheading }}</h2>
+              {% when "text" %}
+                <p class="hero-small-text">{{ block.settings.text }}</p>
+            {% endcase %}
+          {% endfor %}
+        </div>
+
+        <div class="hero-button-container">
+          {% for block in section.blocks %}
+            {% if block.type == "button" and block.settings.button_label != blank and block.settings.button_link != blank %}
+              <a href="{{ block.settings.button_link }}" class="hero-button">
+                {{ block.settings.button_label }}
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% schema %}
+  {
+    "name": "Hero Image",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "button_bg_color",
+        "label": "Button Background Color",
+        "default": "#C4122E"
+      },
+      {
+        "type": "color",
+        "id": "button_text_color",
+        "label": "Button Text Color",
+        "default": "#FFFFFF"
+      },
+      {
+    "type": "select",
+    "id": "container_alignment",
+    "label": "Container Alignment",
+    "default": "center",
+    "options": [
+      { "value": "left", "label": "Left" },
+      { "value": "center", "label": "Center" },
+      { "value": "right", "label": "Right" }
+    ]
+  },
+
+      {
+        "type": "select",
+        "id": "text_alignment",
+        "label": "Text Alignment",
+        "default": "center",
+        "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "center", "label": "Center" },
+          { "value": "right", "label": "Right" }
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "type": "heading",
+        "name": "Heading",
+        "settings": [
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading Text",
+            "default": "Welcome to Our Store"
+          }
+        ]
+      },
+      {
+        "type": "subheading",
+        "name": "Subheading",
+        "settings": [
+          {
+            "type": "text",
+            "id": "subheading",
+            "label": "Subheading Text",
+            "default": "Discover the Best Deals"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "name": "Small Text",
+        "settings": [
+          {
+            "type": "text",
+            "id": "text",
+            "label": "Small Text",
+            "default": "Browse our latest collection"
+          }
+        ]
+      },
+      {
+        "type": "button",
+        "name": "Button",
+        "settings": [
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button Label",
+            "default": "Shop Now"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button Link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero",
+        "category": "Image",
+        "blocks": [
+          {
+            "type": "heading"
+          },
+          {
+            "type": "subheading"
+          },
+          {
+            "type": "text"
+          },
+          {
+            "type": "button"
+          }
+        ]
+      }
+    ]
+  }
+  {% endschema %}
+
+  <style>
+    #section-{{ section.id }} {
+      --background-color: {{ section.settings.background_color }};
+      --text-color: {{ section.settings.text_color }};
+      --button-bg-color: {{ section.settings.button_bg_color }};
+      --button-text-color: {{ section.settings.button_text_color }};
+    }
+
+    {% comment %} .hero-text {
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 5px;
+      width: 937px;
+      color: black;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+    } {% endcomment %}
+
+
+   .hero-text {
+     position: absolute;
+     top: 55%;
+     width: 937px;
+     border-radius: 5px;
+     display: flex;
+     flex-direction: column;
+   }
+
+   .hero-text-wrapper,
+   .hero-content,
+   .hero-button-container {
+     display: flex;
+     flex-direction: column;
+     align-items: inherit;
+     /* Inherit from .hero-text */
+     text-align: inherit;
+     /* Inherit from .hero-text */
+   }
+
+   .hero-align-left {
+     text-align: left;
+     align-items: flex-start;
+   }
+
+   .hero-align-center {
+     text-align: center;
+     align-items: center;
+   }
+
+   .hero-align-right {
+     text-align: right;
+     align-items: flex-end;
+   }
+
+
+   .hero-container-align-left {
+     left: 0;
+     transform: translate(0, -50%);
+   }
+
+   .hero-container-align-center {
+     left: 50%;
+     transform: translate(-50%, -50%);
+   }
+
+   .hero-container-align-right {
+     right: 0;
+     transform: translate(0, -50%);
+   }
+
+
+  </style>
+{% endcomment %}
+
+{% comment %}
+  <div id="section-{{ section.id }}" class="hero-image">
+    <img src="{{ section.settings.image | img_url: 'master' }}" alt="Hero Image" class="hero-img desktop-img">
+    <img src="{{ section.settings.mobile_image | img_url: 'master' }}" alt="Hero Mobile Image" class="hero-img mobile-img">
+
+    {% comment %} <div class="hero-text hero-align-{{ section.settings.text_alignment }}"> {% endcomment %}
+     <div class="hero-text hero-align-{{ section.settings.text_alignment }} hero-container-align-{{ section.settings.container_alignment }}">
+
+      <div class="hero-text-wrapper">
+        <div class="hero-content">
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when "heading" %}
+                <h3 class="hero-heading">{{ block.settings.heading }}</h3>
+              {% when "subheading" %}
+                <h2 class="hero-subheading">{{ block.settings.subheading }}</h2>
+              {% when "text" %}
+                <p class="hero-small-text">{{ block.settings.text }}</p>
+            {% endcase %}
+          {% endfor %}
+        </div>
+
+        <div class="hero-button-container">
+          {% for block in section.blocks %}
+            {% if block.type == "button" and block.settings.button_label != blank and block.settings.button_link != blank %}
+              <a href="{{ block.settings.button_link }}" class="hero-button">
+                {{ block.settings.button_label }}
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% schema %}
+  {
+    "name": "Hero Image",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Desktop Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "mobile_image",
+        "label": "Mobile Image"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "button_bg_color",
+        "label": "Button Background Color",
+        "default": "#C4122E"
+      },
+      {
+        "type": "color",
+        "id": "button_text_color",
+        "label": "Button Text Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "select",
+        "id": "container_alignment",
+        "label": "Container Alignment",
+        "default": "center",
+        "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "center", "label": "Center" },
+          { "value": "right", "label": "Right" }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "text_alignment",
+        "label": "Text Alignment",
+        "default": "center",
+        "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "center", "label": "Center" },
+          { "value": "right", "label": "Right" }
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "type": "heading",
+        "name": "Heading",
+        "settings": [
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading Text",
+            "default": "Welcome to Our Store"
+          }
+        ]
+      },
+      {
+        "type": "subheading",
+        "name": "Subheading",
+        "settings": [
+          {
+            "type": "text",
+            "id": "subheading",
+            "label": "Subheading Text",
+            "default": "Discover the Best Deals"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "name": "Small Text",
+        "settings": [
+          {
+            "type": "text",
+            "id": "text",
+            "label": "Small Text",
+            "default": "Browse our latest collection"
+          }
+        ]
+      },
+      {
+        "type": "button",
+        "name": "Button",
+        "settings": [
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button Label",
+            "default": "Shop Now"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button Link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero",
+        "category": "Image",
+        "blocks": [
+          {
+            "type": "heading"
+          },
+          {
+            "type": "subheading"
+          },
+          {
+            "type": "text"
+          },
+          {
+            "type": "button"
+          }
+        ]
+      }
+    ]
+  }
+  {% endschema %}
+
+
+  <style>
+    #section-{{ section.id }} {
+      --background-color: {{ section.settings.background_color }};
+      --text-color: {{ section.settings.text_color }};
+      --button-bg-color: {{ section.settings.button_bg_color }};
+      --button-text-color: {{ section.settings.button_text_color }};
+    }
+
+    {% comment %} .hero-text {
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 5px;
+      width: 937px;
+      color: black;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+    } {% endcomment %}
+
+
+
+   .hero-text-wrapper,
+   .hero-content,
+   .hero-button-container {
+     display: flex;
+     flex-direction: column;
+     align-items: inherit;
+     /* Inherit from .hero-text */
+     text-align: inherit;
+     /* Inherit from .hero-text */
+   }
+
+   .hero-align-left {
+     text-align: left;
+     align-items: flex-start;
+   }
+
+   .hero-align-center {
+     text-align: center;
+     align-items: center;
+   }
+
+   .hero-align-right {
+     text-align: right;
+     align-items: flex-end;
+   }
+
+
+   .hero-container-align-left {
+     left: 0;
+     transform: translate(0, -50%);
+   }
+
+   .hero-container-align-center {
+     left: 50%;
+     transform: translate(-50%, -50%);
+   }
+
+   .hero-container-align-right {
+     right: 0;
+     transform: translate(0, -50%);
+   }
+
+   .desktop-img {
+      display: block;
+    }
+
+    .mobile-img {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .desktop-img {
+        display: none;
+      }
+      .mobile-img {
+        display: block;
+      }
+    }
+
+  </style>
+{% endcomment %}
+
+{% comment %}
+  <div id="section-{{ section.id }}" class="hero-image">
+    <div class="hero-container hero-container-align-{{ section.settings.container_alignment }}">
+  <div class="hero-inner-container hero-align-{{ section.settings.text_alignment }} ">
+
+        <div class="hero-content-wrapper hero-align-{{ section.settings.text_alignment }}">
+          <div class="hero-content">
+            {% for block in section.blocks %}
+              {% case block.type %}
+                {% when "heading" %}
+                  <h3 class="hero-heading">{{ block.settings.heading }}</h3>
+                {% when "subheading" %}
+                  <h2 class="hero-subheading">{{ block.settings.subheading }}</h2>
+                {% when "text" %}
+                  <p class="hero-small-text">{{ block.settings.text }}</p>
+              {% endcase %}
+            {% endfor %}
+          </div>
+
+          <div class="hero-button-container">
+            {% for block in section.blocks %}
+              {% if block.type == "button" and block.settings.button_label != blank and block.settings.button_link != blank %}
+                <a href="{{ block.settings.button_link }}" class="hero-button">
+                  {{ block.settings.button_label }}
+                </a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+{% endcomment %}
+
+{% comment %}
+  <div id="section-{{ section.id }}" class="hero-image">
+    <div class="hero-container hero-container-align-{{ section.settings.container_alignment }} {{ section.settings.mobile_container_alignment }}">
+  <div class="hero-inner-container hero-align-{{ section.settings.text_alignment }} {{ section.settings.mobile_text_alignment }} ">
+
+        <div class="hero-content-wrapper">
+          <div class="hero-content">
+            {% for block in section.blocks %}
+              {% case block.type %}
+                {% when "heading" %}
+                  <h3 class="hero-heading">{{ block.settings.heading }}</h3>
+                {% when "subheading" %}
+                  <h2 class="hero-subheading">{{ block.settings.subheading }}</h2>
+                {% when "text" %}
+                  <p class="hero-small-text">{{ block.settings.text }}</p>
+              {% endcase %}
+            {% endfor %}
+          </div>
+
+          <div class="hero-button-container">
+            {% for block in section.blocks %}
+              {% if block.type == "button" and block.settings.button_label != blank and block.settings.button_link != blank %}
+                <a href="{{ block.settings.button_link }}" class="hero-button">
+                  {{ block.settings.button_label }}
+                </a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+{% endcomment %}
+
+
+{% comment %} 
+<div id="section-{{ section.id }}" class="hero-image">
+  <div class="hero-container hero-container-align-{{ section.settings.container_alignment }}">
+    <div class="hero-inner-container hero-align-{{ section.settings.text_alignment }} hero-mobile-align-{{ section.settings.mobile_text_alignment }}">
+      <div class="hero-content-wrapper">
+        <div class="hero-content ">
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'heading' %}
+                {% if section.settings.show_heading_mobile  %}
+                  <h3
+                    class="hero-heading {% unless section.settings.show_heading_mobile %}hide-mobile{% endunless %}"
+                  >
+                    {{ block.settings.heading }}
+                  </h3>
+                {% endif %}
+
+              {% when 'subheading' %}
+                {% if section.settings.show_subheading_mobile  %}
+                  <h2 class="hero-subheading {% unless section.settings.show_subheading_mobile %}hide-mobile{% endunless %}">
+                    {{ block.settings.subheading }}
+                  </h2>
+                {% endif %}
+
+          
+
+              {% when 'text' %}
+                {% if section.settings.show_small_text_mobile %}
+                  <p class="hero-small-text {% unless section.settings.show_small_text_mobile %}hide-mobile{% endunless %}">
+                    {{ block.settings.text }}
+                  </p>
+                {% endif %}
+            {% endcase %}
+          {% endfor %}
+        </div>
+
+        <div class="hero-button-container">
+          {% for block in section.blocks %}
+            {% if block.type == 'button'
+              and block.settings.button_label != blank
+              and block.settings.button_link != blank
+            %}
+              <a href="{{ block.settings.button_link }}" class="hero-button">
+                {{ block.settings.button_label }}
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div> {% endcomment %}
+
+
+
+<div id="section-{{ section.id }}" class="hero-image">
+  <div class="hero-container hero-container-align-{{ section.settings.container_alignment }}">
+    <div class="hero-inner-container hero-align-{{ section.settings.text_alignment }} hero-mobile-align-{{ section.settings.mobile_text_alignment }}">
+      <div class="hero-content-wrapper">
+        <div class="hero-content ">
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'heading' %}
+                  <h3
+                    class="hero-heading {% if section.settings.show_heading_mobile %}hide-mobile{% endif %}"
+                  >
+                    {{ block.settings.heading }}
+                  </h3>
+             
+
+              {% when 'subheading' %}
+                  <h2 class="hero-subheading {% if section.settings.show_subheading_mobile %}hide-mobile{% endif %}">
+                    {{ block.settings.subheading }}
+                  </h2>
+
+          
+
+              {% when 'text' %}
+                  <p class="hero-small-text {% if section.settings.show_small_text_mobile %}hide-mobile{% endif %}">
+                    {{ block.settings.text }}
+                  </p>
+            {% endcase %}
+          {% endfor %}
+        </div>
+
+        <div class="hero-button-container">
+          {% for block in section.blocks %}
+            {% if block.type == 'button'
+              and block.settings.button_label != blank
+              and block.settings.button_link != blank
+            %}
+              <a href="{{ block.settings.button_link }}" class="hero-button">
+                {{ block.settings.button_label }}
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero Image",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Image"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button Background Color",
+      "default": "#C4122E"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "select",
+      "id": "container_alignment",
+      "label": "Container Alignment",
+      "default": "center",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "default": "center",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+
+    {
+      "type": "select",
+      "id": "mobile_text_alignment",
+      "label": "Mobile Text Alignment",
+      "default": "center",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "show_heading_mobile",
+      "label": "Hide Heading on Mobile",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_subheading_mobile",
+      "label": "Hide Subheading on Mobile",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_small_text_mobile",
+      "label": "Hide Small Text on Mobile",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading Text",
+          "default": "Welcome to Our Store"
+        }
+      ]
+    },
+    {
+      "type": "subheading",
+      "name": "Subheading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Subheading Text",
+          "default": "Discover the Best Deals"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Small Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Small Text",
+          "default": "Browse our latest collection"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero",
+      "category": "Image",
+      "blocks": [
+        {
+          "type": "heading"
+        },
+        {
+          "type": "subheading"
+        },
+        {
+          "type": "text"
+        },
+        {
+          "type": "button"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+       #section-{{ section.id }} {
+        --background-color: {{ section.settings.background_color }};
+        --text-color: {{ section.settings.text_color }};
+        --button-bg-color: {{ section.settings.button_bg_color }};
+        --button-text-color: {{ section.settings.button_text_color }};
+        --background-image: url('{{ section.settings.background_image | img_url: 'master' }}');
+        --text-alignment: {{ section.settings.text_alignment }};
+        --button-alignment: {{ section.settings.text_alignment }};
+        --container-alignment: {{ section.settings.container_alignment }};
+         --mobile-text-alignment: {{ section.settings.mobile_text_alignment }};
+          --mobile-background-image: url('{{ section.settings.mobile_image | img_url: 'master' }}');
+         }
+
+
+     
+</style>

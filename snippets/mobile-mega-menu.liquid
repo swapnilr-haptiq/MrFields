@@ -1,0 +1,112 @@
+<div class="mobile-mega-menu-wrapper hidden" id="mobile-mega-menu">
+  {% for block in section.blocks %}
+    {% if block.type == 'menu_link' %}
+      <div class="mobile-menu-item">
+        <a href="{{ block.settings.link_url }}" class="mobile-menu-link">{{ block.settings.link_text }}</a>
+
+        {% if block.settings.show_mega_menu %}
+          <div class="mobile-mega-menu-content">
+            {% for i in (1..3) %}
+              {% assign menu = 'menu' | append: i %}
+              {% assign menu_title = 'menu' | append: i %}
+              {% if block.settings[menu] %}
+                <div class="mobile-mega-menu-column">
+                  <h4 class="mobile-menu-column-title">{{ block.settings[menu_title] }}</h4>
+                  {% for link in linklists[block.settings[menu]].links %}
+                    <a href="{{ link.url }}" class="mobile-menu-link-item">{{ link.title }}</a>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            {% endfor %}
+
+            {% for i in (1..2) %}
+              {% assign image = 'image' | append: i %}
+              {% if block.settings[image] %}
+                <div class="mobile-mega-menu-image-column">
+                  <img src="{{ block.settings[image] | img_url: 'master' }}" alt="Image {{ i }}">
+                  <p class="image-name">
+                    {{
+                      block.settings[image]
+                      | split: '/'
+                      | last
+                      | remove: '.jpg'
+                      | remove: '.png'
+                      | remove: '.jpeg'
+                    }}
+                  </p>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+
+
+<script>
+  function toggleMobileMenu() {
+    var mobileMenu = document.getElementById('mobile-mega-menu');
+    mobileMenu.classList.toggle('active');
+  }
+</script> 
+
+
+
+
+{% comment %} 
+<div class="mobile-menu-item">
+  <div class="mobile-menu-item-wrapper">
+    <a href="{{ block.settings.link_url }}" class="mobile-menu-link">{{ block.settings.link_text }}</a>
+
+    {% if block.settings.show_mega_menu %}
+      <img src="RightA.jpg" class="menu-toggle-icon" onclick="toggleMegaMenu({{ block.id }})" alt="Toggle Mega Menu">
+    {% endif %}
+  </div>
+
+  {% if block.settings.show_mega_menu %}
+    <div class="mobile-mega-menu-content" id="mega-menu-{{ block.id }}" style="display: none;">
+      {% for i in (1..3) %}
+        {% assign menu = 'menu' | append: i %}
+        {% assign menu_title = 'menu' | append: i %}
+        {% if block.settings[menu] %}
+          <div class="mobile-mega-menu-column">
+            <h4 class="mobile-menu-column-title">{{ block.settings[menu_title] }}</h4>
+          </div>
+        {% endif %}
+      {% endfor %}
+
+      {% for i in (1..2) %}
+        {% assign image = 'image' | append: i %}
+        {% if block.settings[image] %}
+          <div class="mobile-mega-menu-image-column">
+            <img src="{{ block.settings[image] | img_url: 'master' }}" alt="Image {{ i }}">
+            <p class="image-name">
+              {{
+                block.settings[image]
+                | split: '/'
+                | last
+                | remove: '.jpg'
+                | remove: '.png'
+                | remove: '.jpeg'
+              }}
+            </p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+
+<script>
+  function toggleMegaMenu(blockId) {
+    var menuContent = document.getElementById('mega-menu-' + blockId);
+    if (menuContent.style.display === 'none' || menuContent.style.display === '') {
+      menuContent.style.display = 'block'; 
+    } else {
+      menuContent.style.display = 'none'; 
+    }
+  }
+</script> {% endcomment %}

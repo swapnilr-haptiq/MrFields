@@ -1,0 +1,154 @@
+
+
+<section id="section-{{ section.id }}" class="featured-collection">
+  <div class="container">
+    <h2 class="section-title">{{ section.settings.heading }}</h2>
+
+    <div class="collection-tabs">
+      <button class="collection-tab active" data-target="trending-{{ section.id }}">Trending</button>
+      <button class="collection-tab" data-target="bestselling-{{ section.id }}">Bestsellers</button>
+      <button class="collection-tab" data-target="new-items-{{ section.id }}">New Items</button>
+    </div>
+
+    <div class="products-card-section">
+      {% assign collections_data = "trending_collection|bestselling_collection|new_items_collection" | split: "|" %}
+      {% assign ids = "trending|bestselling|new-items" | split: "|" %}
+      {% assign active = true %}
+
+      {% for collection_key in collections_data %}
+        {% assign collection = collections[section.settings[collection_key]] %}
+        {% assign collection_id = ids[forloop.index0] | append: "-" | append: section.id %}
+
+        {% render 'selection-tabs', collection: collection, id: collection_id, active: active %}
+        
+        {% assign active = false %}
+      {% endfor %}
+
+      <div class="button-wrapper">
+        <button class="btnLeft"><img src="{{ 'leftA.png' | asset_url }}" alt="Left Arrow"></button>
+        <button class="btnRight"><img src="{{ 'RightA.png' | asset_url }}" alt="Right Arrow"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<style>
+  #section-{{ section.id }} {
+     --background-color: {{ section.settings.background_color }};
+    --text-color: {{ section.settings.text_color }};
+    --card-background-color: {{ section.settings.card_background_color }};
+    --slider-button-background-color: {{ section.settings.slider_button_background_color }};
+    --discount-background-color: {{ section.settings.discount_background_color }};
+    --discount-text-color: {{ section.settings.discount_text_color }};
+    --option-background-color: {{ section.settings.option_background_color }};
+    --option-text-color: {{ section.settings.option-text-color }};
+    --option-clicking-text-color: {{ section.settings.option-clicking-text-color }};
+      --slick-dots-bg: {{ section.settings.slick_dots_bg }}
+  }
+
+  .collection-products {
+    display: none;
+  }
+
+  .collection-products.active {
+    display: block;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Selection tabbs",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Cookies speak louder than words"
+    },
+
+    {
+      "type": "collection",
+      "id": "trending_collection",
+      "label": "Trending Collection"
+    },
+    {
+      "type": "collection",
+      "id": "bestselling_collection",
+      "label": "Bestselling Collection"
+    },
+    {
+      "type": "collection",
+      "id": "new_items_collection",
+      "label": "New Items Collection"
+    },
+
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#FFF3DC"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#232323"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "Card Background Color",
+      "default": "#FFF3DC"
+    },
+    {
+      "type": "color",
+      "id": "option_background_color",
+      "label": "option Background Color",
+      "default": "#FFF3DC"
+    },
+    {
+      "type": "color",
+      "id": "option-text-color",
+      "label": "option text Color",
+      "default": "#232323"
+    },
+    {
+      "type": "color",
+      "id": "option-clicking-text-color",
+      "label": "option-clicking-text-Color",
+      "default": "#FFFFFF"
+    },
+
+    {
+      "type": "color",
+      "id": "slider_button_background_color",
+      "label": "Arrows Background Color",
+      "default": "#C4122E"
+    },
+    {
+      "type": "color",
+      "id": "discount_background_color",
+      "label": "Discount Background Color",
+      "default": "#C4122E"
+    },
+    {
+      "type": "color",
+      "id": "discount_text_color",
+      "label": "Discount Text Color",
+      "default": "#FFF"
+    },
+     {
+      "type": "color",
+      "id": "slick_dots_bg",
+      "label": "Slick Dots Background Color",
+      "default": "#DDB468"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection"
+    }
+  ]
+}
+{% endschema %}

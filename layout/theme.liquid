@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+  <head>
+    {% comment %} <title>{{ page_title }}</title> {% endcomment %}
+     <title>MrFields</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="{{ page_description | escape }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    {{ content_for_header }}
+    <!-- Header hook for plugins -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    >
+    <!-- Slick Slider CSS -->
+    <!-- Slick Slider CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
+    >
+
+    <!-- Include jQuery (Slick depends on it) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Slick Slider JS -->
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    {{ 'application.scss.css' | asset_url | stylesheet_tag }}
+    {{ 'application.js' | asset_url | script_tag }}
+
+
+    
+
+  </head>
+  <body>
+    {% comment %} {% render 'header' %} {% endcomment %}
+
+    <main role="main">
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'footer-section' %}
+    {% comment %} {% section 'footer' %} {% endcomment %}
+
+    {% comment %}
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const treatFilter = document.getElementById('treat-filter');
+          const occasionFilter = document.getElementById('occasion-filter');
+          const budgetFilter = document.getElementById('budget-filter');
+          const products = document.querySelectorAll('.product-card-section');
+
+          function filterProducts() {
+            const treatValue = treatFilter.value.toLowerCase();
+            const occasionValue = occasionFilter.value.toLowerCase();
+            const budgetValue = budgetFilter.value.toLowerCase();
+
+            products.forEach((product) => {
+              const productTreats = product.dataset.treat.split(',').map((tag) => tag.trim().toLowerCase());
+              const productOccasions = product.dataset.occasion.split(',').map((tag) => tag.trim().toLowerCase());
+              const productBudgets = product.dataset.budget.split(',').map((tag) => tag.trim().toLowerCase());
+
+              const matchTreat = treatValue === 'all' || productTreats.includes(treatValue);
+              const matchOccasion = occasionValue === 'all' || productOccasions.includes(occasionValue);
+              const matchBudget = budgetValue === 'all' || productBudgets.includes(budgetValue);
+
+              if (matchTreat && matchOccasion && matchBudget) {
+                product.style.display = 'block';
+              } else {
+                product.style.display = 'none';
+              }
+            });
+          }
+
+          [treatFilter, occasionFilter, budgetFilter].forEach((filter) => {
+            filter.addEventListener('change', filterProducts);
+          });
+        });
+      </script>
+    {% endcomment %}
+
+    {% comment %}
+      <script>
+            document.addEventListener('DOMContentLoaded', function () {
+        const treatFilter = document.getElementById('treat-filter');
+        const occasionFilter = document.getElementById('occasion-filter');
+        const budgetFilter = document.getElementById('budget-filter');
+        const products = document.querySelectorAll('.product-card-section');
+
+        function filterProducts() {
+          const treatValue = treatFilter.value.toLowerCase();
+          const occasionValue = occasionFilter.value.toLowerCase();
+          const budgetValue = budgetFilter.value.toLowerCase();
+
+          console.log('Selected Filters:', { treatValue, occasionValue, budgetValue });
+
+          products.forEach((product) => {
+            const productTreats = product.dataset.treat ? product.dataset.treat.toLowerCase().split(',').map(tag => tag.trim()) : [];
+            const productOccasions = product.dataset.occasion ? product.dataset.occasion.toLowerCase().split(',').map(tag => tag.trim()) : [];
+            const productBudgets = product.dataset.budget ? product.dataset.budget.toLowerCase().split(',').map(tag => tag.trim()) : [];
+
+            console.log('Product:', product, { productTreats, productOccasions, productBudgets });
+
+            const matchTreat = treatValue === 'all' || productTreats.includes(treatValue);
+            const matchOccasion = occasionValue === 'all' || productOccasions.includes(occasionValue);
+            const matchBudget = budgetValue === 'all' || productBudgets.includes(budgetValue);
+
+            console.log('Match:', { matchTreat, matchOccasion, matchBudget });
+
+            if (matchTreat && matchOccasion && matchBudget) {
+              product.style.display = 'block';
+            } else {
+              product.style.display = 'none';
+            }
+          });
+        }
+
+        [treatFilter, occasionFilter, budgetFilter].forEach(filter => {
+          filter.addEventListener('change', filterProducts);
+        });
+
+        filterProducts();
+      });
+    {% endcomment %}
+
+    {% comment %} </script> {% endcomment %}
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const productList = document.querySelectorAll('.product-item');
+        const productCount = document.getElementById('product-count');
+        const filterType = document.getElementById('filter-type');
+        const filterPrice = document.getElementById('filter-price');
+        const applyFilters = document.getElementById('apply-filters');
+
+        function updateProductCount() {
+          const visibleProducts = document.querySelectorAll('.product-item:not([hidden])');
+          productCount.textContent = `Total Products: ${visibleProducts.length}`;
+        }
+
+        function filterProducts() {
+          const selectedType = filterType.value;
+          const maxPrice = filterPrice.value ? parseFloat(filterPrice.value) : Infinity;
+
+          productList.forEach((product) => {
+            const productType = product.dataset.type;
+            const productPrice = parseFloat(product.dataset.price);
+
+            if ((selectedType === '' || productType === selectedType) && productPrice <= maxPrice) {
+              product.hidden = false;
+            } else {
+              product.hidden = true;
+            }
+          });
+
+          updateProductCount();
+        }
+
+        applyFilters.addEventListener('click', filterProducts);
+        updateProductCount(); // Initial count
+      });
+    </script>
+  </body>
+</html>

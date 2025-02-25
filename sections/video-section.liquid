@@ -1,0 +1,127 @@
+
+<div class="video-section">
+  <div class="video-container">
+    <div class="video-wrapper">
+      {% if section.settings.video or section.settings.mobile_video %}
+        <video id="desktop-video" class="video-wrapper desktop-only" playsinline muted {% if section.settings.loop %} loop {% endif %}>
+          {% if section.settings.video %}
+
+            <source src="{{ section.settings.video | video_tag }}"> 
+             {% comment %} <source src="{{ section.settings.video | url }}">   {% endcomment %}
+          {% endif %}
+        </video>
+
+        <video id="mobile-video" class="video-wrapper mobile-only" playsinline muted {% if section.settings.loop %} loop {% endif %}>
+          {% if section.settings.mobile_video %}
+            <source src="{{ section.settings.mobile_video | video_tag }}">
+          {% endif %}
+        </video>
+
+        <button id="play-btn" class="video-control left">
+          <img id="play-icon" src="{{ 'play_circle.png' | asset_url }}" alt="Play button">
+        </button>
+
+        <input
+          type="range"
+          id="volume-slider"
+          class="volume-slider"
+          min="0"
+          max="1"
+          step="0.1"
+          value="1"
+          orientation="vertical"
+        >
+
+        <button id="mute-btn" class="video-control right">
+          <img id="mute-icon" src="{{ 'volume_off.png' | asset_url }}" alt="Mute button">
+        </button>
+      {% else %}
+        <p>No video selected</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Video Section",
+  "settings": [
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Select your video for desktop"
+    },
+    {
+      "type": "video",
+      "id": "mobile_video",
+      "label": "Select your video for mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "loop",
+      "label": "Play video in a loop"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Section"
+    }
+  ]
+}
+{% endschema %}
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var videos = document.querySelectorAll('.video-wrapper');
+    var playBtn = document.getElementById('play-btn');
+    var muteBtn = document.getElementById('mute-btn');
+    var playIcon = document.getElementById('play-icon');
+    var muteIcon = document.getElementById('mute-icon');
+    var volumeSlider = document.getElementById('volume-slider');
+
+  
+    volumeSlider.classList.remove('visible');
+
+    videos.forEach(function (video) {
+      playBtn.addEventListener('click', function () {
+        if (video.paused) {
+          video.play();
+          playIcon.src = "{{ 'pause_circle.png' | asset_url }}";
+        } else {
+          video.pause();
+          playIcon.src = "{{ 'play_circle.png' | asset_url }}";
+        }
+      });
+
+      muteBtn.addEventListener('click', function () {
+        if (video.muted) {
+          video.muted = false;
+          muteIcon.src = "{{ 'volume_up.png' | asset_url }}";
+          video.volume = volumeSlider.value;
+
+         
+          volumeSlider.classList.add('visible');
+        } else {
+          video.muted = true;
+          muteIcon.src = "{{ 'volume_off.png' | asset_url }}";
+
+        
+          volumeSlider.classList.remove('visible');
+        }
+      });
+
+      volumeSlider.addEventListener('input', function () {
+        video.volume = volumeSlider.value;
+      });
+    });
+  });
+</script> 
+
+
+
+
+
+
+
+

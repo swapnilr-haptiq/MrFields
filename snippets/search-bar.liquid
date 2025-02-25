@@ -1,0 +1,124 @@
+
+
+{% comment %} 
+<script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
+ <predictive-search class="predictive-search">
+  <div class="mobile-search-icon">
+    <img src="{{ 'search-icon.png' | asset_url }}" alt="Search" id="mobile-search-trigger">
+  </div>
+
+  <form action="{{ routes.search_url }}" method="get" role="search" class="search-bar">
+    <img src="{{ 'search-icon.png' | asset_url }}" alt="Search">
+    <input
+      id="Search"
+      type="search"
+      name="q"
+      placeholder="Search here"
+      value="{{ search.terms | escape }}"
+      role="combobox"
+      aria-expanded="false"
+      aria-owns="predictive-search-results"
+      aria-controls="predictive-search-results"
+      aria-haspopup="listbox"
+      aria-autocomplete="list"
+    >
+    <input name="options[prefix]" type="hidden" value="last">
+    <div id="predictive-search" tabindex="-1"></div>
+    
+  </form>
+</predictive-search>
+
+ <div class="close-search" id="close-search">
+    <img src="{{ 'x-black.png' | asset_url }}" alt="Close">
+</div> {% endcomment %}
+
+
+
+{% comment %} <script>
+ document.addEventListener('DOMContentLoaded', function () {
+  var searchTrigger = document.getElementById('mobile-search-trigger');
+  var closeSearch = document.getElementById('close-search');
+  var searchBar = document.querySelector('.search-bar');
+
+  searchTrigger.addEventListener('click', function () {
+    searchBar.style.display = 'flex';
+    searchTrigger.style.display = 'none';
+  });
+
+  closeSearch.addEventListener('click', function () {
+    searchBar.style.display = 'none';
+    searchTrigger.style.display = 'flex';
+  });
+}); 
+</script>  {% endcomment %}
+
+
+<script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
+ <predictive-search class="predictive-search">
+  <div class="mobile-search-icon">
+    <img src="{{ 'search-icon.png' | asset_url }}" alt="Search" id="mobile-search-trigger">
+  </div>
+
+  <form action="{{ routes.search_url }}" method="get" role="search" class="search-bar">
+    <img src="{{ 'search-icon.png' | asset_url }}" alt="Search">
+    <input
+      id="Search"
+      type="search"
+      name="q"
+      placeholder="Search here"
+      value="{{ search.terms | escape }}"
+      role="combobox"
+      aria-expanded="false"
+      aria-owns="predictive-search-results"
+      aria-controls="predictive-search-results"
+      aria-haspopup="listbox"
+      aria-autocomplete="list"
+    >
+    <input name="options[prefix]" type="hidden" value="last">
+    <div id="predictive-search" tabindex="-1"></div>
+    
+  </form>
+</predictive-search>
+
+ <div class="close-search" id="close-search">
+    <img src="{{ 'x-black.png' | asset_url }}" alt="Close">
+</div>
+
+
+
+ <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var searchTrigger = document.getElementById('mobile-search-trigger');
+    var closeSearch = document.getElementById('close-search');
+    var searchBar = document.querySelector('.search-bar');
+
+    function isMobileView() {
+      return window.innerWidth <= 886; // Mobile screen size condition
+    }
+
+    searchTrigger.addEventListener('click', function () {
+      if (isMobileView()) {
+        searchBar.style.display = 'flex';
+        searchTrigger.style.display = 'none';
+        closeSearch.style.display = 'block'; // Show close button with image
+      }
+    });
+
+    closeSearch.addEventListener('click', function () {
+      if (isMobileView()) {
+        searchBar.style.display = 'none';
+        searchTrigger.style.display = 'flex';
+        closeSearch.style.display = 'none'; // Hide close button
+      }
+    });
+
+    // Optional: Recheck on window resize to reset layout on desktop
+    window.addEventListener('resize', function () {
+      if (!isMobileView()) {
+        searchBar.style.display = ''; // Reset styles for desktop
+        searchTrigger.style.display = '';
+        closeSearch.style.display = 'none'; // Ensure hidden for desktop
+      }
+    });
+  });
+</script>

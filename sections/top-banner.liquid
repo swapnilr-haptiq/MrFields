@@ -1,0 +1,231 @@
+{% comment %} <section id="section-{{section.id}}" class="top-banner">
+    <div class="container">
+        <div class='top-banner-wrapper'>
+            <h3>{{ section.settings.text }}</h3>
+            <div class="top-button-wrapper">
+                 <a href="{{ section.settings.button_link }}" >
+              {{ section.settings.button_text }}</a>
+            </div>
+        <div class="cross-icon">
+          <img src="{{ 'cross.png' | asset_url }}" alt="cross-img"></div>
+        </div>
+    </div>
+</section>    
+
+
+{% schema %}
+{
+"name":"Top-banner",
+"settings":[
+    {
+        "type":"text",
+        "id":"text",
+        "label":"Heading text",
+        "default":"Fall Into Something Delicious: Up To 30% Off Selected Gifts! *no code needed"
+    },
+     {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Shop Sale"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+],
+
+"presets":[
+    {
+      "name": "top banner"
+    }
+]
+
+}
+{% endschema %} {% endcomment %}
+
+
+
+{% comment %} 
+<section id="section-{{section.id}}" class="top-banner" style="background-color: {{ section.settings.bg_color }};">
+    <div class="container">
+        <div class='top-banner-wrapper'>
+            <h3 style="color: {{ section.settings.heading_color }};">{{ section.settings.text }}
+                <span style="color: {{ section.settings.span_color }};">{{ section.settings.span_text }}</span>
+            </h3>
+            <div class="top-button-wrapper">
+                <a href="{{ section.settings.button_link }}" style="background-color: {{ section.settings.button_bg_color }}; color: {{ section.settings.button_text_color }};">
+                    {{ section.settings.button_text }}
+                </a>
+            </div>
+            <div class="cross-icon">
+                <img src="{{ 'cross.png' | asset_url }}" alt="cross-img">
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Top-banner",
+    "settings": [
+        {
+            "type": "text",
+            "id": "text",
+            "label": "Heading text",
+            "default": "Fall Into Something Delicious: Up To 30% Off Selected Gifts! *"
+        },
+        {
+            "type": "text",
+            "id": "span_text",
+            "label": "Span Text",
+            "default": "no code needed"
+        },
+        {
+            "type": "color",
+            "id": "bg_color",
+            "label": "Background Color",
+            "default": "#C4122E"
+        },
+        {
+            "type": "color",
+            "id": "heading_color",
+            "label": "Heading Text Color",
+            "default": "#FFFFFF"
+        },
+        {
+            "type": "color",
+            "id": "span_color",
+            "label": "Span Text Color",
+            "default": "#FFD700"
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button Text",
+            "default": "Shop Sale"
+        },
+        {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button Link"
+        },
+        {
+            "type": "color",
+            "id": "button_bg_color",
+            "label": "Button Background Color",
+            "default": "#FFFFFF"
+        },
+        {
+            "type": "color",
+            "id": "button_text_color",
+            "label": "Button Text Color",
+            "default": "#C4122E"
+        }
+    ],
+    "presets": [
+        {
+            "name": "top banner"
+        }
+    ]
+}
+{% endschema %}
+ {% endcomment %}
+
+
+
+
+
+ <section id="section-{{section.id}}" class="top-banner" style="background-color: {{ section.settings.bg_color }};">
+    <div class="top-container">
+        <div class='top-banner-wrapper'>
+            <h3 style="color: {{ section.settings.heading_color }};">{{ section.settings.text }}
+                <span style="color: {{ section.settings.span_color }};">{{ section.settings.span_text }}</span>
+            </h3>
+            <div class="top-button-wrapper">
+                <a href="{{ section.settings.button_link }}" style="background-color: {{ section.settings.button_bg_color }}; color: {{ section.settings.button_text_color }};">
+                    {{ section.settings.button_text }}
+                </a>
+            </div>
+            <div class="cross-icon" onclick="hideTopBanner()">
+                <img src="{{ 'cross.png' | asset_url }}" alt="cross-img">
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function hideTopBanner() {
+        const banner = document.querySelector('.top-banner');
+        if (banner) {
+            banner.style.display = 'none';
+        }
+    }
+</script>
+
+{% schema %}
+{
+    "name": "Top-banner",
+    "settings": [
+        {
+            "type": "text",
+            "id": "text",
+            "label": "Heading text",
+            "default": "Fall Into Something Delicious: Up To 30% Off Selected Gifts! *"
+        },
+        {
+            "type": "text",
+            "id": "span_text",
+            "label": "Span Text",
+            "default": "no code needed"
+        },
+        {
+            "type": "color",
+            "id": "bg_color",
+            "label": "Background Color",
+            "default": "#C4122E"
+        },
+        {
+            "type": "color",
+            "id": "heading_color",
+            "label": "Heading Text Color",
+            "default": "#FFFFFF"
+        },
+        {
+            "type": "color",
+            "id": "span_color",
+            "label": "Span Text Color",
+            "default": "#FFD700"
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button Text",
+            "default": "Shop Sale"
+        },
+        {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button Link"
+        },
+        {
+            "type": "color",
+            "id": "button_bg_color",
+            "label": "Button Background Color",
+            "default": "#FFFFFF"
+        },
+        {
+            "type": "color",
+            "id": "button_text_color",
+            "label": "Button Text Color",
+            "default": "#C4122E"
+        }
+    ],
+    "presets": [
+        {
+            "name": "top banner"
+        }
+    ]
+}
+{% endschema %}

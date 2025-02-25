@@ -1,0 +1,8 @@
+<p class="total-items">{{ collection.products.size }} items</p>
+<div class="product-list slick-slider">
+  {% for product in collection.products %}
+    <div class="product-item">
+      {% render 'SelectionProduct', product: product %}
+    </div>
+  {% endfor %}
+</div>
