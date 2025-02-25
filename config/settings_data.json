@@ -64,21 +64,23 @@
           "menu_link_jCjMDw": {
             "type": "menu_link",
             "settings": {
-              "link_text": "New Menu Item",
-              "link_url": "",
+              "link_text": "Shop by Treats",
+              "link_url": "shopify://collections",
               "show_mega_menu": true,
-              "menu1": "",
-              "menu2": "",
-              "menu3": "",
+              "menu1": "gift-treats",
+              "menu2": "gift-types",
+              "menu3": "gifts-by-price",
+              "image1": "shopify://shop_images/cookies.png",
               "image1_name": "",
+              "image2": "shopify://shop_images/Bestseller.png",
               "image2_name": ""
             }
           },
           "menu_link_V8Jkp4": {
             "type": "menu_link",
             "settings": {
-              "link_text": "New Menu Item",
-              "link_url": "",
+              "link_text": "Shop By Occasion",
+              "link_url": "shopify://collections",
               "show_mega_menu": true,
               "menu1": "",
               "menu2": "",
@@ -90,7 +92,7 @@
           "menu_link_8CKcdi": {
             "type": "menu_link",
             "settings": {
-              "link_text": "New Menu Item",
+              "link_text": "Custom Gifts",
               "link_url": "",
               "show_mega_menu": true,
               "menu1": "",
@@ -103,7 +105,7 @@
           "menu_link_zixQNk": {
             "type": "menu_link",
             "settings": {
-              "link_text": "New Menu Item",
+              "link_text": "Corporates Gifts",
               "link_url": "",
               "show_mega_menu": true,
               "menu1": "",
@@ -116,7 +118,7 @@
           "menu_link_bPQnKw": {
             "type": "menu_link",
             "settings": {
-              "link_text": "New Menu Item",
+              "link_text": "Specials",
               "link_url": "",
               "show_mega_menu": true,
               "menu1": "",
