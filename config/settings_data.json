@@ -81,7 +81,7 @@
             "settings": {
               "link_text": "Shop By Occasion",
               "link_url": "shopify://collections",
-              "show_mega_menu": true,
+              "show_mega_menu": false,
               "menu1": "",
               "menu2": "",
               "menu3": "",
