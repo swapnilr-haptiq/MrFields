@@ -147,7 +147,42 @@
       },
       "hero": {
         "type": "hero",
+        "blocks": {
+          "heading_6xGgQi": {
+            "type": "heading",
+            "settings": {
+              "heading": "Welcome to Our Store"
+            }
+          },
+          "subheading_Beycpt": {
+            "type": "subheading",
+            "settings": {
+              "subheading": "Discover the Best Deals"
+            }
+          },
+          "text_a7JUxJ": {
+            "type": "text",
+            "settings": {
+              "text": "Browse our latest collection"
+            }
+          },
+          "button_3Pw9bC": {
+            "type": "button",
+            "settings": {
+              "button_label": "Shop Now",
+              "button_link": "shopify://collections"
+            }
+          }
+        },
+        "block_order": [
+          "heading_6xGgQi",
+          "subheading_Beycpt",
+          "text_a7JUxJ",
+          "button_3Pw9bC"
+        ],
         "settings": {
+          "background_image": "shopify://shop_images/heroBanner.png",
+          "mobile_image": "shopify://shop_images/Mobile-hero-img.png",
           "text_color": "#000000",
           "button_bg_color": "#C4122E",
           "button_text_color": "#FFFFFF",
