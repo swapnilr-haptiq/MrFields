@@ -94,7 +94,7 @@
             "settings": {
               "link_text": "Custom Gifts",
               "link_url": "",
-              "show_mega_menu": true,
+              "show_mega_menu": false,
               "menu1": "",
               "menu2": "",
               "menu3": "",
@@ -107,7 +107,7 @@
             "settings": {
               "link_text": "Corporates Gifts",
               "link_url": "",
-              "show_mega_menu": true,
+              "show_mega_menu": false,
               "menu1": "",
               "menu2": "",
               "menu3": "",
@@ -120,7 +120,7 @@
             "settings": {
               "link_text": "Specials",
               "link_url": "",
-              "show_mega_menu": true,
+              "show_mega_menu": false,
               "menu1": "",
               "menu2": "",
               "menu3": "",
@@ -273,25 +273,6 @@
           "loop": false
         }
       },
-      "NewSelection": {
-        "type": "NewSelection",
-        "settings": {
-          "heading": "Cookies speak louder than words",
-          "trending_collection": "trending-collection",
-          "bestselling_collection": "bestsellers",
-          "new_items_collection": "new-items",
-          "background_color": "#ffffff",
-          "text_color": "#232323",
-          "card_background_color": "#fff3dc",
-          "option_background_color": "#000000",
-          "option-text-color": "#000000",
-          "option-clicking-text-color": "#ffffff",
-          "slider_button_background_color": "#c4122e",
-          "discount_background_color": "#c4122e",
-          "discount_text_color": "#ffffff",
-          "slick_dots_bg": "#ddb468"
-        }
-      },
       "featured-collection": {
         "type": "featured-collection",
         "settings": {
@@ -435,6 +416,25 @@
           "sign_up_heading": "Join Our Newsletter",
           "sign_up_text": "Subscribe to our newsletter and stay updated with the latest news and offers.",
           "small_text": "Discount is not valid with in-store orders, other codes, or sale items"
+        }
+      },
+      "SelectionTabs": {
+        "type": "SelectionTabs",
+        "settings": {
+          "heading": "Cookies speak louder than words",
+          "trending_collection": "",
+          "bestselling_collection": "",
+          "new_items_collection": "",
+          "background_color": "#FFF3DC",
+          "text_color": "#232323",
+          "card_background_color": "#FFF3DC",
+          "option_background_color": "#FFF3DC",
+          "option-text-color": "#232323",
+          "option-clicking-text-color": "#FFFFFF",
+          "slider_button_background_color": "#C4122E",
+          "discount_background_color": "#C4122E",
+          "discount_text_color": "#FFF",
+          "slick_dots_bg": "#DDB468"
         }
       }
     },
