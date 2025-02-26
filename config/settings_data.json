@@ -190,7 +190,7 @@
           "text_alignment": "center",
           "mobile_text_alignment": "center",
           "show_heading_mobile": true,
-          "show_subheading_mobile": true,
+          "show_subheading_mobile": false,
           "show_small_text_mobile": true
         }
       },
