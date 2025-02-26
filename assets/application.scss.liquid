@@ -1879,12 +1879,11 @@ picture {
     border-radius: 91px;
     font-size: 18px;
     line-height: normal;
-    /* Ensures no extra space */
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0 20px;
-    /* Adjust padding for smaller button */
+
   }
 }
 
@@ -1892,30 +1891,8 @@ picture {
   background-color: #a01027;
 }
 
-@media (max-width: 768px) {
-  .hero-heading {
-    display: none;
-  }
-}
 
 @media (max-width: 768px) {
-  //  .hero-inner-container {
-  //    text-align: var(--mobile-text-alignment);
-  //    display: flex;
-  //    flex-direction: column;
-  //    width: 100%;
-  //    align-items: var(--mobile-text-alignment);
-  //  }
-
-  //  .hero-content-wrapper {
-  //    width: 100%;
-  //    display: flex;
-  //    flex-direction: column;
-  //    text-align: var(--mobile-text-alignment);
-  //    align-items: var(--mobile-text-alignment);
-  //  }
-
-  //  .hero-content h3,
   .hero-content h2,
   .hero-content p {
     text-align: var(--mobile-text-alignment);
@@ -1925,26 +1902,12 @@ picture {
     justify-content: var(--mobile-text-alignment);
   }
 
-  //  .hero-button {
-  //    text-align: center;
-  //  }
 }
 
-//  @media (max-width: 767px) {
-//    .hide-mobile {
-//      display: none !important;
-//    }
-//  }
-
-//  @media (min-width: 768px) {
-//    .hide-desktop {
-//      display: none !important;
-//    }
-//  }
 
 .hero-content .hide-mobile {
   @include phone {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -1952,10 +1915,8 @@ picture {
 
 .footer-image {
   background-image: var(--background-image);
-  // height: 100vh;
   margin-top: 0;
   width: 100%;
-  // background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
@@ -1974,102 +1935,6 @@ picture {
   background-color: #f0e0c9;
   margin-top: 20%;
 }
-
-// pick-uo
-
-// .pickup-banner {
-//   width: 100%;
-// background-image: var(--background-image);
-//   background-size: contain;
-//   background-position: top;
-//   background-repeat: no-repeat;
-//   display: flex;
-//   justify-content: center;
-// }
-
-// .pickup-banner-wrapper {
-//   width: 100%;
-
-//   background-size: cover;
-//   /* Use cover for full background */
-//   background-position: center;
-//   /* Center image */
-//   background-repeat: no-repeat;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   /* Ensures vertical alignment */
-// }
-
-// .pickup-banner-wrapper .container {
-//   width: 100%;
-// }
-
-// .container,
-// .footer,
-// .header {
-//   padding: 0px 24px;
-// }
-
-// .banner-wrapper {
-//   margin: 0 auto;
-//   padding: 62px;
-//   max-width: 1712px;
-//   background: #fff9eb;
-//   border-radius: 10px;
-//   text-align: var(--text-alignment);
-//   margin-top: 20%;
-//   color: var(--text-color);
-// }
-
-// .pickup-heading {
-//   font-family: "Patua One";
-//   font-weight: 400;
-//   font-size: 52px;
-//   line-height: 62px;
-//   letter-spacing: 0;
-//   margin-bottom: 16px;
-
-//   @include phone(){
-//     font-family: Patua One;
-//       font-size: 24px;
-//       font-weight: 400;
-//       line-height: 28px;
-//       text-align: left;
-//       text-underline-position: from-font;
-//       text-decoration-skip-ink: none;
-//   }
-// }
-
-// .pickup-subheading {
-//   font-family: "Assistant";
-//   font-weight: 400;
-//   font-size: 20px;
-//   line-height: 28px;
-//   letter-spacing: 0;
-//   margin-bottom: 40px;
-
-//   @include phone(){
-//     font-family: Assistant;
-//       font-size: 16px;
-//       font-weight: 400;
-//       line-height: 24px;
-//       text-align: left;
-//       text-underline-position: from-font;
-//       text-decoration-skip-ink: none;
-//   }
-// }
-
-// .pickup-button {
-//   font-family: "Assistant";
-//   font-weight: 600;
-//   font-size: 20px;
-//   line-height: 30px;
-//   letter-spacing: 0;
-//   padding: 11px 60px;
-//   border-radius: 98px;
-//   display: inline-block;
-// }
 
 .pickup-banner-wrapper1 {
   display: flex;
@@ -2347,7 +2212,6 @@ picture {
 .volume-slider {
   position: absolute;
   bottom: 70px;
-  /* Above the mute button */
   right: 38px;
   width: 8px;
   height: 80px;
@@ -2372,11 +2236,9 @@ picture {
   }
 }
 
-/* Initially hide the volume slider */
 .volume-slider {
   display: none;
   transition: opacity 0.3s ease;
-  /* Smooth appearance */
 }
 
 .volume-slider.visible {
@@ -2387,7 +2249,6 @@ picture {
 source::before,
 source::after {
   content: none;
-  /* Prevent any theme artifacts */
 }
 
 // top banner
@@ -2500,7 +2361,6 @@ source::after {
   display: flex;
   justify-content: center;
   padding: 24px 25px 12px 25px;
-  // align-items: center;
   gap: 32px;
 
   @include phone() {
@@ -2635,16 +2495,7 @@ source::after {
   gap: 10px;
   background-color: white;
 
-  // @include phone() {
-  //   display: none;
-  //   width: 180px;
-  //   height: 44px;
-  //   padding: 12px 16px;
-  //   gap: 10px;
-  //   border-radius: 8px;
-  //   border-width: 1px;
-  //   align-items: center;
-  // }
+
 }
 
 .search-bar input {
@@ -2801,27 +2652,6 @@ source::after {
 
 
 
-
-// .close-search {
-//   display: none; /* Default: hidden for all views */
-//   cursor: pointer;
-// }
-
-// .close-search img {
-//   display: none;
-//   width: 20px;
-//   height: 20px;
-// }
-
-// @media (max-width: 768px) {
-//   .close-search {
-//     display: block; /* Show only on mobile view */
-//   }
-
-//   .close-search img {
-//     display: block;
-//   }
-// }
 
 
 .close-search {
@@ -3122,16 +2952,8 @@ source::after {
   margin-left: 5px;
 }
 
-/* Hide mobile mega menu by default */
 .mobile-mega-menu {
-  // display: none;
-  // position: absolute;
-  // top: 0;
-  // left: 0;
-  // padding: 1rem;
-  // background-color: #f9f9f9;
-  // border-top: 1px solid #ddd;
-  // z-index: 2000;
+
 
     display: none;
   position: absolute;
@@ -3620,7 +3442,6 @@ source::after {
 
 }
 
-/* Mobile view */
 @media (max-width: 768px) {
   .footer-menu-links {
     display: none; 
@@ -3633,7 +3454,6 @@ source::after {
   }
 }
 
-/* Desktop view */
 @media (min-width: 769px) {
   .footer-menu-links {
     display: block;
