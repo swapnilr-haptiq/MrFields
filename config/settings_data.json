@@ -407,6 +407,12 @@
             "settings": {
               "image": "shopify://shop_images/tiktokImg.png"
             }
+          },
+          "footer_image_BD96Hd": {
+            "type": "footer_image",
+            "settings": {
+              "image": "shopify://shop_images/Vectorp.png"
+            }
           }
         },
         "block_order": [
@@ -417,7 +423,8 @@
           "footer_image_4FQfdp",
           "footer_image_jyUDnV",
           "footer_image_iMPkUQ",
-          "footer_image_rcgH8R"
+          "footer_image_rcgH8R",
+          "footer_image_BD96Hd"
         ],
         "settings": {
           "logo": "shopify://shop_images/shop-logo.png",
